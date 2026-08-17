@@ -1,0 +1,2568 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArtPros Viewer</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: #fffaf0;
+      --ink: #202018;
+      --muted: #6d665b;
+      --line: #d8cbb8;
+      --accent: #b6422c;
+      --accent-dark: #7b291c;
+      --ok: #317549;
+      --critical: #a12e25;
+      --track-ll: #244c8f;
+      --track-tt: #b6422c;
+      --track-tb: #317549;
+      --track-td: #8b5b16;
+      --track-jw: #5c4a7d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(182, 66, 44, 0.16), transparent 28rem),
+        linear-gradient(135deg, #f7f1e6 0%, #efe5d2 100%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      width: min(1240px, calc(100vw - 32px));
+      margin: 24px auto 36px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 58px);
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    button, select, input {
+      border: 1px solid var(--accent-dark);
+      color: var(--panel);
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 9px 15px;
+      font: 700 14px/1.1 Georgia, "Times New Roman", serif;
+      cursor: pointer;
+      box-shadow: 0 2px 0 var(--accent-dark);
+    }
+
+    button:disabled {
+      opacity: 0.38;
+      cursor: not-allowed;
+    }
+
+    select, input {
+      color: var(--ink);
+      background: var(--panel);
+      min-width: 110px;
+    }
+
+    input {
+      width: 82px;
+      min-width: 82px;
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: color-mix(in srgb, var(--panel) 92%, white);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 18px 38px rgba(70, 46, 20, 0.12);
+    }
+
+    aside.card {
+      padding: 18px;
+      align-self: start;
+      position: sticky;
+      top: 16px;
+    }
+
+    .stage.card { padding: 14px; }
+
+    .metric {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 0;
+    }
+
+    .metric:first-child { padding-top: 0; }
+    .metric:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 5px;
+    }
+
+    .value {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 10px;
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      margin-right: 7px;
+    }
+
+    .badge.ok { background: var(--ok); }
+    .badge.critical { background: var(--critical); }
+
+    audio {
+      display: block;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      min-height: 610px;
+      overflow-x: auto;
+      border-radius: 16px;
+      background:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.14)),
+        repeating-linear-gradient(90deg, transparent 0 89px, rgba(32, 32, 24, 0.045) 90px);
+      border: 1px solid var(--line);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      min-width: 820px;
+      height: 610px;
+      cursor: crosshair;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .analysis-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 250, 240, 0.74);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .analysis-controls label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .analysis-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin-top: 12px;
+      background: rgba(255, 250, 240, 0.68);
+    }
+
+    .batch-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .batch-summary {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .boxplot-panel {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255, 250, 240, 0.68);
+    }
+
+    .boxplot-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .boxplot-canvas {
+      display: block;
+      width: 100%;
+      height: 300px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 250, 240, 0.8);
+    }
+
+    /* Mini-demo build: keep the per-sweep viewer, hide full batch/statistics UI. */
+    .batch-controls,
+    #batchSummary,
+    .boxplot-panel {
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: right;
+    }
+
+    th:first-child, td:first-child,
+    th:nth-child(2), td:nth-child(2),
+    th:nth-child(3), td:nth-child(3) {
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: -1px;
+    }
+
+    .status {
+      min-height: 20px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .hint {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 860px) {
+      header, .grid {
+        display: block;
+      }
+
+      .controls {
+        justify-content: flex-start;
+        margin-top: 14px;
+      }
+
+      aside.card {
+        position: static;
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>ArtPros Viewer</h1>
+        <div class="subtitle">Articulatory prominence and boundary explorer for EMA, acoustics, and forced-aligned annotations.</div>
+      </div>
+      <div class="controls">
+        <select id="speakerSelect" aria-label="Speaker"></select>
+        <button id="prevBtn" type="button">← Previous</button>
+        <select id="sweepSelect" aria-label="Sweep"></select>
+        <button id="nextBtn" type="button">Next →</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <aside class="card">
+        <div class="metric">
+          <span class="label">Speaker</span>
+          <div class="value" id="speakerValue">Loading...</div>
+        </div>
+        <div class="metric">
+          <span class="label">Sweep</span>
+          <div class="value" id="sweepValue">Loading...</div>
+        </div>
+        <div class="metric">
+          <span class="label">Prompt Answer</span>
+          <div class="value" id="promptValue">-</div>
+        </div>
+        <div class="metric">
+          <span class="label">Sampling Variation</span>
+          <div class="value" id="audioStatus">Loading...</div>
+        </div>
+        <div class="metric">
+          <span class="label">Zoom Window</span>
+          <div class="value" id="windowValue">-</div>
+        </div>
+        <div class="metric">
+          <span class="label">Interesting Words</span>
+          <div class="value" id="wordsValue">-</div>
+        </div>
+        <div class="metric">
+          <span class="label">Channels</span>
+          <div class="value" id="channelsValue">-</div>
+        </div>
+        <div class="hint">Click a word interval in the labeled strip to play that exact audio segment. Use the arrow keys or buttons to move between non-blacklisted sweeps.</div>
+      </aside>
+
+      <section class="stage card">
+        <audio id="audio" controls preload="metadata"></audio>
+        <div class="analysis-controls">
+          <label>Onset peak
+            <select id="onsetPeakMode">
+              <option value="negative">negative</option>
+              <option value="positive">positive</option>
+              <option value="abs">absolute</option>
+            </select>
+          </label>
+          <label>Coda peak
+            <select id="codaPeakMode">
+              <option value="positive">positive</option>
+              <option value="negative">negative</option>
+              <option value="abs">absolute</option>
+            </select>
+          </label>
+          <label>Show
+            <select id="trackDisplay">
+              <option value="position">positions</option>
+              <option value="velocity">velocities</option>
+              <option value="tiers">position + velocity tiers</option>
+            </select>
+          </label>
+          <label>Low-pass Hz <input id="lowpassInput" type="number" min="1" max="120" step="1" value="20"></label>
+          <label>Smoothing Hz <input id="smoothInput" type="number" min="0" max="80" step="1" value="10"></label>
+          <label>Pre s <input id="preWindowInput" type="number" min="0" max="1" step="0.1" value="0.0"></label>
+          <label>Post s <input id="postWindowInput" type="number" min="0" max="1" step="0.1" value="0.0"></label>
+          <label>Max samp. var. % <input id="samplingThresholdInput" type="number" min="0" max="20" step="0.1" value="0.5"></label>
+          <label><input id="includeWithToggle" type="checkbox" checked> Include “with” in pulse train</label>
+          <label><input id="scaleWithToggle" type="checkbox"> Scale “with” magnitude to 1/3</label>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="plot" width="1160" height="610"></canvas>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="analysis-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Word</th>
+                <th>Onset</th>
+                <th>Coda</th>
+                <th>Onset peak</th>
+                <th>Coda peak</th>
+            <th>Pulse</th>
+                <th>Pulse mag</th>
+                <th>Jaw min t</th>
+                <th>Jaw min</th>
+              </tr>
+            </thead>
+            <tbody id="analysisBody"></tbody>
+          </table>
+        </div>
+        <div class="batch-controls">
+          <button id="batchSpeakerBtn" type="button">Analyze Current Speaker</button>
+          <button id="batchAllBtn" type="button">Analyze All Speakers</button>
+          <button id="downloadRowsBtn" type="button" disabled>Download Rows CSV</button>
+          <button id="downloadGroupsBtn" type="button" disabled>Download Group CSV</button>
+        </div>
+        <div class="batch-summary" id="batchSummary">Batch analysis not run yet.</div>
+        <div class="boxplot-panel">
+          <div class="boxplot-controls">
+            <label>Boundary
+              <select id="boxBoundaryPair">
+                <option value="fat-cat">fat-cat</option>
+                <option value="cat-sat">cat-sat</option>
+                <option value="sat-with">sat-with</option>
+                <option value="with-matt">with-matt</option>
+              </select>
+            </label>
+            <label>Compare
+              <select id="boxCompareMode">
+                <option value="pair">two sentence types</option>
+                <option value="oneRest">one sentence vs rest</option>
+                <option value="pairWithinType">boundary pairs within sentence type</option>
+                <option value="focus">AB before focus vs not before focus</option>
+              </select>
+            </label>
+            <label id="boxTypeALabel">Type A
+              <select id="boxTypeA">
+                <option>A1</option>
+                <option>A2</option>
+                <option>A3</option>
+                <option>A4</option>
+                <option>A5-6</option>
+              </select>
+            </label>
+            <label id="boxTypeBLabel">Type B
+              <select id="boxTypeB">
+                <option>A2</option>
+                <option>A1</option>
+                <option>A3</option>
+                <option>A4</option>
+                <option>A5-6</option>
+              </select>
+            </label>
+            <label id="boxPairALabel">Pair A
+              <select id="boxPairA">
+                <option value="fat-cat">fat-cat</option>
+                <option value="cat-sat">cat-sat</option>
+                <option value="sat-with">sat-with</option>
+                <option value="with-matt">with-matt</option>
+              </select>
+            </label>
+            <label id="boxPairBLabel">Pair B
+              <select id="boxPairB">
+                <option value="cat-sat">cat-sat</option>
+                <option value="fat-cat">fat-cat</option>
+                <option value="sat-with">sat-with</option>
+                <option value="with-matt">with-matt</option>
+              </select>
+            </label>
+            <button id="drawBoxplotBtn" type="button">Draw Box Plot</button>
+          </div>
+          <canvas id="boxplotCanvas" class="boxplot-canvas" width="1000" height="300"></canvas>
+          <div class="batch-summary" id="boxplotSummary">Run batch analysis, then draw a box plot.</div>
+        </div>
+        <div class="status" id="status"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const AUDIO_SR = 48000;
+    const EMA_SR = 250;
+    const WAVEFORM_GAIN = 12.8;
+    const PULSE_TIER_HEIGHT = 110;
+    const FALLBACK_SPEAKERS = ["PGU-CD"];
+    const SYLLABLE_ARTICULATORS = {
+      fat: { onset: "LL", coda: "TT" },
+      cat: { onset: "TD", coda: "TT" },
+      sat: { onset: "TT", coda: "TT" },
+      with: { onset: "LL", coda: "TT" },
+      mat: { onset: "LL", coda: "TT" },
+      matt: { onset: "LL", coda: "TT" }
+    };
+    const CHANNEL_COLORS = {
+      LL: getCss("--track-ll"),
+      TT: getCss("--track-tt"),
+      TB: getCss("--track-tb"),
+      TD: getCss("--track-td"),
+      JW: getCss("--track-jw")
+    };
+
+    const state = {
+      speakers: [],
+      speaker: null,
+      metadata: null,
+      audioLog: new Map(),
+      prompts: new Map(),
+      promptTypes: new Map(),
+      clenchBaseline: null,
+      batchRows: [],
+      batchGroups: [],
+      sweeps: [],
+      sweepIndex: 0,
+      decodedAudio: null,
+      wordIntervals: [],
+      phoneIntervals: [],
+      clickableWords: [],
+      ema: null,
+      velocities: {},
+      analysisResults: [],
+      plotWindow: { start: 0, end: 1 }
+    };
+
+    const els = {
+      speakerSelect: document.getElementById("speakerSelect"),
+      prevBtn: document.getElementById("prevBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      sweepSelect: document.getElementById("sweepSelect"),
+      audio: document.getElementById("audio"),
+      onsetPeakMode: document.getElementById("onsetPeakMode"),
+      codaPeakMode: document.getElementById("codaPeakMode"),
+      trackDisplay: document.getElementById("trackDisplay"),
+      lowpassInput: document.getElementById("lowpassInput"),
+      smoothInput: document.getElementById("smoothInput"),
+      preWindowInput: document.getElementById("preWindowInput"),
+      postWindowInput: document.getElementById("postWindowInput"),
+      samplingThresholdInput: document.getElementById("samplingThresholdInput"),
+      includeWithToggle: document.getElementById("includeWithToggle"),
+      scaleWithToggle: document.getElementById("scaleWithToggle"),
+      plot: document.getElementById("plot"),
+      status: document.getElementById("status"),
+      speakerValue: document.getElementById("speakerValue"),
+      sweepValue: document.getElementById("sweepValue"),
+      promptValue: document.getElementById("promptValue"),
+      audioStatus: document.getElementById("audioStatus"),
+      windowValue: document.getElementById("windowValue"),
+      wordsValue: document.getElementById("wordsValue"),
+      channelsValue: document.getElementById("channelsValue"),
+      legend: document.getElementById("legend"),
+      analysisBody: document.getElementById("analysisBody"),
+      batchSpeakerBtn: document.getElementById("batchSpeakerBtn"),
+      batchAllBtn: document.getElementById("batchAllBtn"),
+      downloadRowsBtn: document.getElementById("downloadRowsBtn"),
+      downloadGroupsBtn: document.getElementById("downloadGroupsBtn"),
+      batchSummary: document.getElementById("batchSummary"),
+      boxBoundaryPair: document.getElementById("boxBoundaryPair"),
+      boxCompareMode: document.getElementById("boxCompareMode"),
+      boxTypeA: document.getElementById("boxTypeA"),
+      boxTypeB: document.getElementById("boxTypeB"),
+      boxTypeALabel: document.getElementById("boxTypeALabel"),
+      boxTypeBLabel: document.getElementById("boxTypeBLabel"),
+      boxPairA: document.getElementById("boxPairA"),
+      boxPairB: document.getElementById("boxPairB"),
+      boxPairALabel: document.getElementById("boxPairALabel"),
+      boxPairBLabel: document.getElementById("boxPairBLabel"),
+      drawBoxplotBtn: document.getElementById("drawBoxplotBtn"),
+      boxplotCanvas: document.getElementById("boxplotCanvas"),
+      boxplotSummary: document.getElementById("boxplotSummary")
+    };
+
+    init().catch((err) => {
+      console.error(err);
+      setStatus("Failed to load viewer data. If you opened this as a file, run a local server: python3 -m http.server", true);
+    });
+
+    async function init() {
+      setStatus("Discovering speakers...");
+      state.speakers = await discoverSpeakers();
+      state.speaker = state.speakers[0];
+      populateSpeakerSelect();
+      bindEvents();
+      await loadSpeaker(state.speaker);
+    }
+
+    async function loadSpeaker(speaker) {
+      state.speaker = speaker;
+      state.sweepIndex = 0;
+      state.decodedAudio = null;
+      state.wordIntervals = [];
+      state.phoneIntervals = [];
+      state.clickableWords = [];
+      state.ema = null;
+      state.velocities = {};
+      state.analysisResults = [];
+      state.prompts = new Map();
+      state.promptTypes = new Map();
+      state.clenchBaseline = null;
+      draw();
+
+      setStatus(`Loading metadata for ${speaker}...`);
+      const [metadataText, audioLogText, promptText] = await Promise.all([
+        fetchText(speakerPath("metadata.txt")),
+        fetchText(speakerPath("audiolog.txt")),
+        fetchSpeakerPromptText(speaker)
+      ]);
+
+      state.metadata = parseMetadata(metadataText);
+      state.audioLog = parseAudioLog(audioLogText);
+      state.prompts = parsePrompts(promptText);
+      state.promptTypes = parsePromptTypes(promptText);
+      state.clenchBaseline = await estimateClenchBaselineFor(state.speaker, state.metadata);
+      state.sweeps = buildSweepList(state.metadata, state.audioLog);
+      populateSweepSelect();
+      if (!state.sweeps.length) {
+        setStatus(`No sweeps pass the ${getSamplingThreshold()}% sampling-variation threshold.`, true);
+        return;
+      }
+      await loadSweepByIndex(0);
+    }
+
+    function bindEvents() {
+      els.speakerSelect.addEventListener("change", () => loadSpeaker(els.speakerSelect.value));
+      els.prevBtn.addEventListener("click", () => loadSweepByIndex(state.sweepIndex - 1));
+      els.nextBtn.addEventListener("click", () => loadSweepByIndex(state.sweepIndex + 1));
+      els.onsetPeakMode.addEventListener("change", recomputeAnalysis);
+      els.codaPeakMode.addEventListener("change", recomputeAnalysis);
+      els.trackDisplay.addEventListener("change", draw);
+      els.lowpassInput.addEventListener("change", recomputeAnalysis);
+      els.smoothInput.addEventListener("change", recomputeAnalysis);
+      els.preWindowInput.addEventListener("change", recomputeAnalysis);
+      els.postWindowInput.addEventListener("change", recomputeAnalysis);
+      els.samplingThresholdInput.addEventListener("change", applySamplingThreshold);
+      els.includeWithToggle.addEventListener("change", recomputeAnalysisAndClearBatch);
+      els.scaleWithToggle.addEventListener("change", recomputeAnalysisAndClearBatch);
+      els.batchSpeakerBtn.addEventListener("click", () => runBatchAnalysis([state.speaker]));
+      els.batchAllBtn.addEventListener("click", () => runBatchAnalysis(state.speakers));
+      els.downloadRowsBtn.addEventListener("click", () => downloadCsv("articulatory_boundaries_rows.csv", state.batchRows));
+      els.downloadGroupsBtn.addEventListener("click", () => downloadCsv("articulatory_boundaries_grouped.csv", state.batchGroups));
+      els.drawBoxplotBtn.addEventListener("click", drawSelectedBoxplot);
+      els.boxCompareMode.addEventListener("change", updateBoxplotControls);
+      els.boxBoundaryPair.addEventListener("change", drawSelectedBoxplot);
+      els.boxTypeA.addEventListener("change", drawSelectedBoxplot);
+      els.boxTypeB.addEventListener("change", drawSelectedBoxplot);
+      els.boxPairA.addEventListener("change", drawSelectedBoxplot);
+      els.boxPairB.addEventListener("change", drawSelectedBoxplot);
+      window.addEventListener("resize", drawSelectedBoxplot);
+      els.sweepSelect.addEventListener("change", () => {
+        const idx = state.sweeps.indexOf(Number(els.sweepSelect.value));
+        if (idx >= 0) loadSweepByIndex(idx);
+      });
+      els.plot.addEventListener("click", onCanvasClick);
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") loadSweepByIndex(state.sweepIndex - 1);
+        if (event.key === "ArrowRight") loadSweepByIndex(state.sweepIndex + 1);
+      });
+      window.addEventListener("resize", draw);
+      updateBoxplotControls();
+    }
+
+    function populateSpeakerSelect() {
+      els.speakerSelect.innerHTML = "";
+      for (const speaker of state.speakers) {
+        const option = document.createElement("option");
+        option.value = speaker;
+        option.textContent = speaker;
+        els.speakerSelect.appendChild(option);
+      }
+      els.speakerSelect.value = state.speaker;
+    }
+
+    function populateSweepSelect() {
+      els.sweepSelect.innerHTML = "";
+      for (const sweep of state.sweeps) {
+        const option = document.createElement("option");
+        option.value = String(sweep);
+        option.textContent = padSweep(sweep);
+        els.sweepSelect.appendChild(option);
+      }
+    }
+
+    async function loadSweepByIndex(index) {
+      if (index < 0 || index >= state.sweeps.length) return;
+      state.sweepIndex = index;
+      const sweep = state.sweeps[index];
+      const id = padSweep(sweep);
+
+      setStatus(`Loading sweep ${id}...`);
+      els.prevBtn.disabled = index === 0;
+      els.nextBtn.disabled = index === state.sweeps.length - 1;
+      els.speakerSelect.value = state.speaker;
+      els.sweepSelect.value = String(sweep);
+      els.speakerValue.textContent = state.speaker;
+      els.sweepValue.textContent = id;
+      els.promptValue.textContent = state.prompts.get(sweep) || "No prompt found";
+      els.audio.removeAttribute("src");
+      els.audio.disabled = true;
+      els.audio.load();
+      state.decodedAudio = null;
+
+      const [textGrid, posText] = await Promise.all([
+        fetchText(speakerPath(`out/${id}.TextGrid`)),
+        fetchText(speakerPath(`pos/${id}.txt`))
+      ]);
+
+      state.wordIntervals = parseTextGridTier(textGrid, "words");
+      state.phoneIntervals = parseTextGridTier(textGrid, "phones");
+      state.ema = parsePos(posText, state.metadata.channels);
+      state.velocities = computeVelocities(state.ema.channels, getDerivativeSettings());
+      state.analysisResults = analyzeSyllables();
+      const audioLoaded = await loadOptionalAudio(id);
+      state.plotWindow = choosePlotWindow(state.wordIntervals, state.metadata);
+      updateSidebar(sweep);
+      updateAnalysisTable();
+      draw();
+      setStatus(audioLoaded ? `Sweep ${id} loaded.` : `Sweep ${id} loaded without audio.`);
+    }
+
+    async function loadOptionalAudio(id) {
+      try {
+        const audioPath = speakerPath(`wav/${id}.wav`);
+        const audioBuffer = await fetchArrayBuffer(audioPath);
+        state.decodedAudio = await decodeAudio(audioBuffer);
+        els.audio.src = audioPath;
+        els.audio.disabled = false;
+        return true;
+      } catch (err) {
+        console.warn(`Audio unavailable for sweep ${id}.`, err);
+        state.decodedAudio = null;
+        els.audio.removeAttribute("src");
+        els.audio.disabled = true;
+        els.audio.load();
+        return false;
+      }
+    }
+
+    function recomputeAnalysis() {
+      if (!state.ema) return;
+      state.velocities = computeVelocities(state.ema.channels, getDerivativeSettings());
+      state.analysisResults = analyzeSyllables();
+      updateAnalysisTable();
+      draw();
+    }
+
+    function recomputeAnalysisAndClearBatch() {
+      state.batchRows = [];
+      state.batchGroups = [];
+      els.downloadRowsBtn.disabled = true;
+      els.downloadGroupsBtn.disabled = true;
+      els.batchSummary.textContent = "Batch analysis not run yet.";
+      clearBoxplot("Run batch analysis, then draw a box plot.");
+      recomputeAnalysis();
+    }
+
+    async function applySamplingThreshold() {
+      if (!state.metadata) return;
+      state.sweeps = buildSweepList(state.metadata, state.audioLog);
+      populateSweepSelect();
+      recomputeAnalysisAndClearBatch();
+      if (!state.sweeps.length) {
+        setStatus(`No sweeps pass the ${getSamplingThreshold()}% sampling-variation threshold.`, true);
+        return;
+      }
+      await loadSweepByIndex(Math.min(state.sweepIndex, state.sweeps.length - 1));
+    }
+
+    function updateSidebar(sweep) {
+      const id = padSweep(sweep);
+      const log = state.audioLog.get(id);
+      if (log) {
+        const cls = log.status === "Critical" ? "critical" : "ok";
+        els.audioStatus.innerHTML = `<span class="badge ${cls}">${escapeHtml(log.status)}</span>${escapeHtml(log.percent)} variation (threshold ${getSamplingThreshold()}%)`;
+      } else {
+        els.audioStatus.textContent = "No audiolog row found";
+      }
+
+      els.windowValue.textContent = `${state.plotWindow.start.toFixed(3)}s - ${state.plotWindow.end.toFixed(3)}s`;
+      els.wordsValue.textContent = state.metadata.wordLabels.join(", ");
+      els.channelsValue.textContent = activeChannelNames().map((name) => [name, state.metadata.channels[name]])
+        .map(([name, col]) => `${name}:${col} ${state.ema?.channels[name]?.header || ""}`.trim())
+        .join("  ") + (state.clenchBaseline ? `  clench JW:${state.clenchBaseline.jawY.toFixed(2)} (${state.clenchBaseline.sweep})` : "");
+      els.legend.innerHTML = activeChannelNames().map((name) => (
+        `<span><span class="swatch" style="background:${CHANNEL_COLORS[name] || "#333"}"></span>${name}</span>`
+      )).join("") + `
+        <span>${trackDisplayLabel()}</span>
+        <span><span class="swatch" style="background:#202018"></span>syllable pulse</span>
+        <span><span class="swatch" style="background:${CHANNEL_COLORS.JW}"></span>jaw minimum</span>
+      `;
+    }
+
+    function draw() {
+      const canvas = els.plot;
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const desiredHeight = els.trackDisplay.value === "tiers" ? tieredCanvasHeight() : stackedCanvasHeight(260);
+      canvas.style.height = `${desiredHeight}px`;
+      canvas.width = Math.max(820, Math.floor(rect.width * dpr));
+      canvas.height = Math.floor(desiredHeight * dpr);
+
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const w = canvas.width / dpr;
+      const h = canvas.height / dpr;
+      const pad = { left: 62, right: 20, top: 24, bottom: 34 };
+      const wordY = 58;
+      const pulseY = 124;
+      const audioY = pulseY + PULSE_TIER_HEIGHT + 18;
+      const audioH = 110;
+      const trackTop = audioY + audioH + 32;
+      const trackH = els.trackDisplay.value === "tiers" ? tieredTrackHeight() : 260;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#fffaf0";
+      ctx.fillRect(0, 0, w, h);
+
+      drawTimeGrid(ctx, pad, w, h, trackTop);
+      drawWordIntervals(ctx, pad, w, wordY, 60);
+      drawPulseTrain(ctx, pad, w, pulseY, PULSE_TIER_HEIGHT);
+      drawWaveform(ctx, pad, w, audioY, audioH);
+      if (els.trackDisplay.value === "tiers") {
+        drawTieredTracks(ctx, pad, w, trackTop);
+      } else {
+        drawTracks(ctx, pad, w, trackTop, trackH);
+      }
+      drawAnalysisMarkers(ctx, pad, w, wordY, trackTop, trackH);
+      drawAxisLabels(ctx, pad, audioY, trackTop);
+    }
+
+    function drawTimeGrid(ctx, pad, w, h, trackTop) {
+      const { start, end } = state.plotWindow;
+      const span = end - start;
+      const plotW = w - pad.left - pad.right;
+      const step = niceTick(span / 8);
+      ctx.strokeStyle = "rgba(32, 32, 24, 0.13)";
+      ctx.fillStyle = "#6d665b";
+      ctx.lineWidth = 1;
+      ctx.font = "12px Georgia";
+      ctx.textAlign = "center";
+
+      for (let t = Math.ceil(start / step) * step; t <= end + 1e-9; t += step) {
+        const x = pad.left + ((t - start) / span) * plotW;
+        ctx.beginPath();
+        ctx.moveTo(x, 18);
+        ctx.lineTo(x, h - pad.bottom + 4);
+        ctx.stroke();
+        ctx.fillText(`${t.toFixed(step < 0.1 ? 2 : 1)}s`, x, h - 12);
+      }
+
+      ctx.strokeStyle = "#d8cbb8";
+      ctx.beginPath();
+      ctx.moveTo(pad.left, trackTop - 22);
+      ctx.lineTo(w - pad.right, trackTop - 22);
+      ctx.stroke();
+    }
+
+    function drawWordIntervals(ctx, pad, w, y, height) {
+      const { start, end } = state.plotWindow;
+      const span = end - start;
+      const plotW = w - pad.left - pad.right;
+      state.clickableWords = [];
+
+      ctx.font = "15px Georgia";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      for (const interval of state.wordIntervals) {
+        if (!interval.text || interval.xmax < start || interval.xmin > end) continue;
+        const x1 = pad.left + ((Math.max(interval.xmin, start) - start) / span) * plotW;
+        const x2 = pad.left + ((Math.min(interval.xmax, end) - start) / span) * plotW;
+        const isTarget = state.metadata.wordLabels.includes(interval.text);
+        const isStart = state.metadata.startWords.includes(interval.text);
+
+        ctx.fillStyle = isTarget ? "rgba(182, 66, 44, 0.20)" : isStart ? "rgba(49, 117, 73, 0.18)" : "rgba(216, 203, 184, 0.45)";
+        ctx.strokeStyle = isTarget ? "#b6422c" : "#d8cbb8";
+        roundedRect(ctx, x1, y, Math.max(2, x2 - x1), height, 10);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#202018";
+        const label = interval.text.length > 10 ? interval.text.slice(0, 9) + "..." : interval.text;
+        if (x2 - x1 > 22) ctx.fillText(label, (x1 + x2) / 2, y + height / 2);
+        state.clickableWords.push({ ...interval, x1, x2, y1: y, y2: y + height });
+      }
+
+      ctx.fillStyle = "#6d665b";
+      ctx.textAlign = "right";
+      ctx.fillText("words", pad.left - 12, y + height / 2);
+    }
+
+    function drawPulseTrain(ctx, pad, w, y, height) {
+      const pulseTrain = computePulseTrain(state.analysisResults);
+      if (!pulseTrain.pulses.length) return;
+
+      const { start, end } = state.plotWindow;
+      const plotW = w - pad.left - pad.right;
+      const baseY = y + height;
+      const maxMag = Math.max(...pulseTrain.pulses.map((pulse) => pulse.magnitude), 1e-9);
+      const xForTime = (time) => pad.left + ((time - start) / (end - start)) * plotW;
+
+      ctx.fillStyle = "rgba(32, 32, 24, 0.04)";
+      ctx.fillRect(pad.left, y, plotW, height);
+      ctx.strokeStyle = "#d8cbb8";
+      ctx.beginPath();
+      ctx.moveTo(pad.left, baseY);
+      ctx.lineTo(pad.left + plotW, baseY);
+      ctx.stroke();
+
+      for (const pulse of pulseTrain.pulses) {
+        if (pulse.rightTime < start || pulse.leftTime > end) continue;
+        const xCenter = xForTime(pulse.centerTime);
+        const xLeft = xForTime(pulse.leftTime);
+        const xRight = xForTime(pulse.rightTime);
+        const yPeak = baseY - (pulse.magnitude / maxMag) * (height - 4);
+
+        ctx.fillStyle = "rgba(32, 32, 24, 0.12)";
+        ctx.strokeStyle = "#202018";
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(xLeft, baseY);
+        ctx.lineTo(xCenter, yPeak);
+        ctx.lineTo(xRight, baseY);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(xCenter, baseY);
+        ctx.lineTo(xCenter, yPeak);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = "#6d665b";
+      ctx.font = "12px Georgia";
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      ctx.fillText("pulse", pad.left - 12, y + height / 2);
+    }
+
+    function drawWaveform(ctx, pad, w, y, height) {
+      if (!state.decodedAudio) return;
+      const data = state.decodedAudio.getChannelData(0);
+      const { start, end } = state.plotWindow;
+      const plotW = Math.floor(w - pad.left - pad.right);
+      const mid = y + height / 2;
+      const amp = height * 0.46;
+      const sampleRate = state.decodedAudio.sampleRate || AUDIO_SR;
+      const startSample = Math.max(0, Math.floor(start * sampleRate));
+      const endSample = Math.min(data.length, Math.ceil(end * sampleRate));
+      const samplesPerPixel = Math.max(1, Math.floor((endSample - startSample) / plotW));
+
+      ctx.strokeStyle = "#202018";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let px = 0; px < plotW; px++) {
+        const s0 = startSample + px * samplesPerPixel;
+        const s1 = Math.min(endSample, s0 + samplesPerPixel);
+        let min = 1;
+        let max = -1;
+        for (let s = s0; s < s1; s++) {
+          const value = Math.max(-1, Math.min(1, (data[s] || 0) * WAVEFORM_GAIN));
+          if (value < min) min = value;
+          if (value > max) max = value;
+        }
+        const x = pad.left + px;
+        ctx.moveTo(x, mid - max * amp);
+        ctx.lineTo(x, mid - min * amp);
+      }
+      ctx.stroke();
+
+      ctx.strokeStyle = "rgba(32, 32, 24, 0.28)";
+      ctx.beginPath();
+      ctx.moveTo(pad.left, mid);
+      ctx.lineTo(w - pad.right, mid);
+      ctx.stroke();
+    }
+
+    function drawTracks(ctx, pad, w, y, height) {
+      if (!state.ema) return;
+      const { start, end } = state.plotWindow;
+      const plotW = w - pad.left - pad.right;
+      const source = els.trackDisplay.value === "velocity" ? state.velocities : state.ema.channels;
+      const names = activeChannelNames().filter((name) => source[name]);
+      const allVisible = [];
+
+      for (const name of names) {
+        const values = source[name];
+        const startIndex = Math.max(0, Math.floor(start * EMA_SR));
+        const endIndex = Math.min(values.length - 1, Math.ceil(end * EMA_SR));
+        for (let i = startIndex; i <= endIndex; i++) {
+          const v = values[i];
+          if (Number.isFinite(v)) allVisible.push(v);
+        }
+      }
+
+      const min = percentile(allVisible, 0.03);
+      const max = percentile(allVisible, 0.97);
+      const range = Math.max(1e-9, max - min);
+
+      ctx.fillStyle = "rgba(216, 203, 184, 0.22)";
+      ctx.fillRect(pad.left, y, plotW, height);
+      ctx.strokeStyle = "#d8cbb8";
+      ctx.strokeRect(pad.left, y, plotW, height);
+
+      ctx.font = "12px Georgia";
+      ctx.fillStyle = "#6d665b";
+      ctx.textAlign = "right";
+      ctx.fillText(max.toFixed(1), pad.left - 10, y + 8);
+      ctx.fillText(min.toFixed(1), pad.left - 10, y + height);
+
+      for (const name of names) {
+        const values = source[name];
+        const startIndex = Math.max(0, Math.floor(start * EMA_SR));
+        const endIndex = Math.min(values.length - 1, Math.ceil(end * EMA_SR));
+        ctx.strokeStyle = CHANNEL_COLORS[name] || "#333";
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        let started = false;
+        for (let i = startIndex; i <= endIndex; i++) {
+          const t = i / EMA_SR;
+          if (t < start || t > end) continue;
+          const value = values[i];
+          if (!Number.isFinite(value)) {
+            started = false;
+            continue;
+          }
+          const x = pad.left + ((t - start) / (end - start)) * plotW;
+          const yy = y + height - ((value - min) / range) * height;
+          if (!started) {
+            ctx.moveTo(x, yy);
+            started = true;
+          } else {
+            ctx.lineTo(x, yy);
+          }
+        }
+        ctx.stroke();
+      }
+    }
+
+    function drawTieredTracks(ctx, pad, w, y) {
+      if (!state.ema) return;
+      const plotW = w - pad.left - pad.right;
+      const tierH = 48;
+      const gap = 8;
+      const tiers = [];
+
+      for (const name of activeChannelNames()) {
+        tiers.push({ name, kind: "pos", label: `${name} pos`, values: state.ema.channels[name], color: CHANNEL_COLORS[name] || "#333" });
+        tiers.push({ name, kind: "vel", label: `${name} vel`, values: state.velocities[name], color: CHANNEL_COLORS[name] || "#333" });
+      }
+
+      tiers.forEach((tier, index) => {
+        if (!tier.values) return;
+        const yy = y + index * (tierH + gap);
+        drawSingleTier(ctx, pad, plotW, yy, tierH, tier);
+      });
+    }
+
+    function drawSingleTier(ctx, pad, plotW, y, height, tier) {
+      const { start, end } = state.plotWindow;
+      const values = tier.values;
+      const startIndex = Math.max(0, Math.floor(start * EMA_SR));
+      const endIndex = Math.min(values.length - 1, Math.ceil(end * EMA_SR));
+      const visible = [];
+
+      for (let i = startIndex; i <= endIndex; i++) {
+        const value = values[i];
+        if (Number.isFinite(value)) visible.push(value);
+      }
+
+      const min = percentile(visible, 0.03);
+      const max = percentile(visible, 0.97);
+      const range = Math.max(1e-9, max - min);
+
+      ctx.fillStyle = tier.kind === "vel" ? "rgba(182, 66, 44, 0.07)" : "rgba(216, 203, 184, 0.20)";
+      ctx.fillRect(pad.left, y, plotW, height);
+      ctx.strokeStyle = "#d8cbb8";
+      ctx.strokeRect(pad.left, y, plotW, height);
+
+      if (tier.kind === "vel") {
+        const zeroY = y + height - ((0 - min) / range) * height;
+        if (zeroY >= y && zeroY <= y + height) {
+          ctx.strokeStyle = "rgba(32, 32, 24, 0.22)";
+          ctx.beginPath();
+          ctx.moveTo(pad.left, zeroY);
+          ctx.lineTo(pad.left + plotW, zeroY);
+          ctx.stroke();
+        }
+      }
+
+      ctx.strokeStyle = tier.color;
+      ctx.lineWidth = tier.kind === "vel" ? 1.4 : 1.8;
+      ctx.beginPath();
+      let started = false;
+      for (let i = startIndex; i <= endIndex; i++) {
+        const time = i / EMA_SR;
+        if (time < start || time > end) continue;
+        const value = values[i];
+        if (!Number.isFinite(value)) {
+          started = false;
+          continue;
+        }
+        const x = pad.left + ((time - start) / (end - start)) * plotW;
+        const yy = y + height - ((value - min) / range) * height;
+        if (!started) {
+          ctx.moveTo(x, yy);
+          started = true;
+        } else {
+          ctx.lineTo(x, yy);
+        }
+      }
+      ctx.stroke();
+
+      ctx.fillStyle = "#6d665b";
+      ctx.font = "12px Georgia";
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      ctx.fillText(tier.label, pad.left - 10, y + height / 2);
+      ctx.font = "10px Georgia";
+      ctx.fillText(max.toFixed(1), pad.left + plotW - 6, y + 8);
+      ctx.fillText(min.toFixed(1), pad.left + plotW - 6, y + height - 7);
+    }
+
+    function drawAnalysisMarkers(ctx, pad, w, wordY, trackTop, trackH) {
+      if (!state.analysisResults.length) return;
+      const { start, end } = state.plotWindow;
+      const plotW = w - pad.left - pad.right;
+      const toX = (time) => pad.left + ((time - start) / (end - start)) * plotW;
+
+      for (const result of state.analysisResults) {
+        if (result.word.xmax < start || result.word.xmin > end) continue;
+        const markers = [
+          { time: result.onsetPeak.time, color: CHANNEL_COLORS[result.onsetArticulator], label: `${result.word.text} onset` },
+          { time: result.codaPeak.time, color: CHANNEL_COLORS[result.codaArticulator], label: `${result.word.text} coda` },
+          { time: result.pulseTime, color: "#202018", label: `${result.word.text} pulse`, dashed: true },
+          { time: result.jawMinimum.time, color: CHANNEL_COLORS.JW, label: `${result.word.text} JW min` }
+        ];
+
+        for (const marker of markers) {
+          if (!Number.isFinite(marker.time) || marker.time < start || marker.time > end) continue;
+          const x = toX(marker.time);
+          ctx.save();
+          ctx.strokeStyle = marker.color || "#202018";
+          ctx.fillStyle = marker.color || "#202018";
+          ctx.lineWidth = marker.dashed ? 2.4 : 1.6;
+          if (marker.dashed) ctx.setLineDash([5, 5]);
+          ctx.beginPath();
+          ctx.moveTo(x, wordY - 6);
+          ctx.lineTo(x, trackTop + trackH);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.beginPath();
+          ctx.arc(x, marker.dashed ? trackTop - 10 : trackTop + trackH + 8, marker.dashed ? 5 : 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+    }
+
+    function drawAxisLabels(ctx, pad, audioY, trackTop) {
+      ctx.fillStyle = "#6d665b";
+      ctx.font = "14px Georgia";
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      ctx.fillText("audio", pad.left - 12, audioY + 55);
+      if (els.trackDisplay.value !== "tiers") {
+        ctx.fillText(els.trackDisplay.value === "velocity" ? "velocity" : "EMA", pad.left - 12, trackTop + 130);
+      }
+    }
+
+    function onCanvasClick(event) {
+      const rect = els.plot.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const hit = state.clickableWords.find((word) => (
+        x >= word.x1 && x <= word.x2 && y >= word.y1 && y <= word.y2
+      ));
+      if (!hit) return;
+      playSegment(hit.xmin, hit.xmax);
+    }
+
+    function playSegment(start, end) {
+      if (!state.decodedAudio || !els.audio.src) {
+        setStatus("Audio is unavailable for this demo sweep; labels and EMA analysis still work.", true);
+        return;
+      }
+      const audio = els.audio;
+      audio.pause();
+      audio.currentTime = Math.max(0, start);
+      const stop = () => {
+        if (audio.currentTime >= end) {
+          audio.pause();
+          audio.removeEventListener("timeupdate", stop);
+        }
+      };
+      audio.addEventListener("timeupdate", stop);
+      audio.play().catch((err) => setStatus(`Playback blocked: ${err.message}`, true));
+    }
+
+    function updateAnalysisTable() {
+      if (!state.analysisResults.length) {
+        els.analysisBody.innerHTML = `<tr><td colspan="9">No target syllables found after the start word.</td></tr>`;
+        return;
+      }
+
+      const pulseTrain = computePulseTrain(state.analysisResults);
+      const boundaryInfo = computeArticulatoryBoundaries(state.analysisResults);
+      const boundaryText = boundaryInfo.boundaries
+        .map((item) => `${item.leftWord}-${item.rightWord}: ${(item.boundary * 1000).toFixed(1)} ms`)
+        .join("  ");
+      els.analysisBody.innerHTML = state.analysisResults.map((row) => `
+        <tr>
+          <td>${escapeHtml(row.word.text)}</td>
+          <td>${escapeHtml(row.onsetArticulator)} ${escapeHtml(row.onsetPhone?.text || "")}</td>
+          <td>${escapeHtml(row.codaArticulator)} ${escapeHtml(row.codaPhone?.text || "")}</td>
+          <td>${formatTime(row.onsetPeak.time)}</td>
+          <td>${formatTime(row.codaPeak.time)}</td>
+          <td>${formatTime(row.pulseTime)}</td>
+          <td>${formatNumber(pulseTrain.magnitudeByWord.get(row.word) || NaN, 2)}</td>
+          <td>${formatTime(row.jawMinimum.time)}</td>
+          <td>${formatNumber(row.jawMinimum.value, 2)}</td>
+        </tr>
+      `).join("") + `
+        <tr>
+          <td colspan="9">Triangle pulse train: theta=${formatNumber(pulseTrain.theta, 4)} rad, tan(theta)=${formatNumber(pulseTrain.tanTheta, 4)}</td>
+        </tr>
+        <tr>
+          <td colspan="9">Articulatory boundaries: ${escapeHtml(boundaryText || "none")}</td>
+        </tr>
+      `;
+    }
+
+    function analyzeSyllables() {
+      if (!state.ema || !state.velocities) return [];
+      const results = [];
+      const startIdx = state.wordIntervals.findIndex((item) => state.metadata.startWords.includes(item.text));
+      const words = state.wordIntervals.slice(startIdx >= 0 ? startIdx + 1 : 0)
+        .filter((item) => {
+          if (item.text === "with" && !els.includeWithToggle.checked) return false;
+          return SYLLABLE_ARTICULATORS[item.text];
+        });
+
+      for (const word of words) {
+        const config = SYLLABLE_ARTICULATORS[word.text];
+        const phones = state.phoneIntervals.filter((phone) => (
+          phone.text && phone.xmax > word.xmin && phone.xmin < word.xmax
+        ));
+        const onsetPhone = phones[0] || null;
+        const codaPhone = phones.at(-1) || null;
+        const searchPadding = getSearchPadding();
+        const extendedWord = {
+          xmin: Math.max(0, word.xmin - searchPadding.pre),
+          xmax: word.xmax + searchPadding.post
+        };
+        const onsetWindow = onsetPhone
+          ? clampInterval(expandInterval(onsetPhone, 0.02 + searchPadding.pre), extendedWord)
+          : { xmin: extendedWord.xmin, xmax: (word.xmin + word.xmax) / 2 };
+        const codaWindow = codaPhone
+          ? clampInterval(expandInterval(codaPhone, 0.02 + searchPadding.post), extendedWord)
+          : { xmin: (word.xmin + word.xmax) / 2, xmax: extendedWord.xmax };
+        const onsetPeak = findVelocityPeak(state.velocities[config.onset], onsetWindow, els.onsetPeakMode.value);
+        const codaPeak = findVelocityPeak(state.velocities[config.coda], codaWindow, els.codaPeakMode.value);
+        const jawMinimum = findPositionMinimum(state.ema.channels.JW, word);
+
+        results.push({
+          word,
+          onsetArticulator: config.onset,
+          codaArticulator: config.coda,
+          onsetPhone,
+          codaPhone,
+          onsetWindow,
+          codaWindow,
+          onsetPeak,
+          codaPeak,
+          pulseTime: (onsetPeak.time + codaPeak.time) / 2,
+          jawMinimum
+        });
+      }
+
+      return results;
+    }
+
+    function analyzeSyllablesFromData(wordIntervals, phoneIntervals, ema, velocities, metadata) {
+      const previous = {
+        wordIntervals: state.wordIntervals,
+        phoneIntervals: state.phoneIntervals,
+        ema: state.ema,
+        velocities: state.velocities,
+        metadata: state.metadata
+      };
+      state.wordIntervals = wordIntervals;
+      state.phoneIntervals = phoneIntervals;
+      state.ema = ema;
+      state.velocities = velocities;
+      state.metadata = metadata;
+      const results = analyzeSyllables();
+      state.wordIntervals = previous.wordIntervals;
+      state.phoneIntervals = previous.phoneIntervals;
+      state.ema = previous.ema;
+      state.velocities = previous.velocities;
+      state.metadata = previous.metadata;
+      return results;
+    }
+
+    function computePulseTrain(results, clenchBaseline = state.clenchBaseline) {
+      const valid = results
+        .filter((row) => Number.isFinite(row.pulseTime) && Number.isFinite(row.jawMinimum.value))
+        .sort((a, b) => a.pulseTime - b.pulseTime);
+      const magnitudeByWord = new Map();
+      if (!valid.length) return { theta: NaN, tanTheta: NaN, pulses: [], magnitudeByWord };
+
+      const clenchJaw = clenchBaseline?.jawY ?? Math.max(...valid.map((row) => row.jawMinimum.value));
+      const jawSpan = Math.max(1e-9, clenchJaw - Math.min(...valid.map((row) => row.jawMinimum.value)));
+      const floor = jawSpan * 0.02;
+      const centers = valid.map((row) => row.pulseTime);
+      const magnitudes = valid.map((row) => {
+        const multiplier = getSyllableMagnitudeMultiplier(row.word.text);
+        const magnitude = (Math.max(0, clenchJaw - row.jawMinimum.value) + floor) * multiplier;
+        magnitudeByWord.set(row.word, magnitude);
+        return magnitude;
+      });
+
+      const thetaValues = [];
+      for (let i = 0; i < centers.length - 1; i++) {
+        const dt = centers[i + 1] - centers[i];
+        const magSum = magnitudes[i + 1] + magnitudes[i];
+        if (dt > 0 && magSum > 0) thetaValues.push(Math.atan(dt / magSum));
+      }
+
+      const theta = thetaValues.length ? Math.min(...thetaValues) : Math.PI / 4;
+      const tanTheta = Math.tan(theta);
+      const pulses = valid.map((row, i) => {
+        const halfWidth = magnitudes[i] * tanTheta;
+        return {
+          word: row.word.text,
+          centerTime: centers[i],
+          magnitude: magnitudes[i],
+          leftTime: centers[i] - halfWidth,
+          rightTime: centers[i] + halfWidth
+        };
+      });
+
+      return { theta, tanTheta, pulses, magnitudeByWord };
+    }
+
+    function computeArticulatoryBoundaries(results, clenchBaseline = state.clenchBaseline) {
+      const pulseTrain = computePulseTrain(results, clenchBaseline);
+      const pulses = pulseTrain.pulses.slice().sort((a, b) => a.centerTime - b.centerTime);
+      const boundaries = [];
+      for (let i = 0; i < pulses.length - 1; i++) {
+        const rawGap = pulses[i + 1].leftTime - pulses[i].rightTime;
+        boundaries.push({
+          leftWord: pulses[i].word,
+          rightWord: pulses[i + 1].word,
+          boundary: Math.max(0, rawGap),
+          rawBoundary: rawGap,
+          leftBaseEnd: pulses[i].rightTime,
+          rightBaseStart: pulses[i + 1].leftTime
+        });
+      }
+      return { pulseTrain, boundaries };
+    }
+
+    async function runBatchAnalysis(speakers) {
+      const rows = [];
+      let analyzedSweeps = 0;
+      setBatchControlsDisabled(true);
+      els.batchSummary.textContent = `Running batch analysis for ${speakers.length} speaker(s), sampling threshold ${getSamplingThreshold()}%...`;
+
+      try {
+        for (const speaker of speakers) {
+          const dataset = await loadSpeakerDataset(speaker);
+          const sweeps = buildSweepList(dataset.metadata, dataset.audioLog);
+          for (const sweep of sweeps) {
+            analyzedSweeps++;
+            const id = padSweep(sweep);
+            els.batchSummary.textContent = `Analyzing ${speaker} ${id}...`;
+            try {
+              const sweepRows = await analyzeSweepForBoundaries(speaker, sweep, dataset);
+              rows.push(...sweepRows);
+            } catch (err) {
+              console.warn(`Skipping ${speaker} ${id}.`, err);
+            }
+          }
+        }
+
+        state.batchRows = rows;
+        state.batchGroups = groupBoundaryRowsWide(rows);
+        els.downloadRowsBtn.disabled = !rows.length;
+        els.downloadGroupsBtn.disabled = !state.batchGroups.length;
+        els.batchSummary.textContent = `Batch complete: ${analyzedSweeps} sweeps passed threshold, ${rows.length} boundary rows, ${state.batchGroups.length} grouped rows.`;
+        drawSelectedBoxplot();
+      } finally {
+        setBatchControlsDisabled(false);
+      }
+    }
+
+    async function loadSpeakerDataset(speaker) {
+      const [metadataText, audioLogText, promptText] = await Promise.all([
+        fetchText(`${encodeURIComponent(speaker)}/metadata.txt`),
+        fetchText(`${encodeURIComponent(speaker)}/audiolog.txt`),
+        fetchSpeakerPromptText(speaker)
+      ]);
+      const metadata = parseMetadata(metadataText);
+      return {
+        speaker,
+        metadata,
+        audioLog: parseAudioLog(audioLogText),
+        prompts: parsePrompts(promptText),
+        promptTypes: parsePromptTypes(promptText),
+        clenchBaseline: await estimateClenchBaselineFor(speaker, metadata)
+      };
+    }
+
+    async function analyzeSweepForBoundaries(speaker, sweep, dataset) {
+      const id = padSweep(sweep);
+      const [textGrid, posText] = await Promise.all([
+        fetchText(`${encodeURIComponent(speaker)}/out/${id}.TextGrid`),
+        fetchText(`${encodeURIComponent(speaker)}/pos/${id}.txt`)
+      ]);
+      const wordIntervals = parseTextGridTier(textGrid, "words");
+      const phoneIntervals = parseTextGridTier(textGrid, "phones");
+      const ema = parsePos(posText, dataset.metadata.channels);
+      const velocities = computeVelocities(ema.channels, getDerivativeSettings());
+      const results = analyzeSyllablesFromData(wordIntervals, phoneIntervals, ema, velocities, dataset.metadata);
+      const { pulseTrain, boundaries } = computeArticulatoryBoundaries(results, dataset.clenchBaseline);
+      const promptType = dataset.promptTypes.get(sweep) || "NA";
+      const answer = dataset.prompts.get(sweep) || "";
+
+      return boundaries.map((boundary, index) => ({
+        speaker,
+        sweep: id,
+        answerType: promptType,
+        answer,
+        boundaryIndex: index + 1,
+        boundaryPair: `${boundary.leftWord}-${boundary.rightWord}`,
+        leftWord: boundary.leftWord,
+        rightWord: boundary.rightWord,
+        boundaryMs: boundary.boundary * 1000,
+        rawBoundaryMs: boundary.rawBoundary * 1000,
+        leftBaseEnd: boundary.leftBaseEnd,
+        rightBaseStart: boundary.rightBaseStart,
+        theta: pulseTrain.theta,
+        tanTheta: pulseTrain.tanTheta,
+        clenchSweep: dataset.clenchBaseline?.sweep || "",
+        clenchJawY: dataset.clenchBaseline?.jawY ?? NaN,
+        withMagnitudeMultiplier: getSyllableMagnitudeMultiplier("with")
+      }));
+    }
+
+    function groupBoundaryRowsWide(rows) {
+      const answerTypes = ["A1", "A2", "A3", "A4", "A5-6"];
+      const boundaryPairs = ["fat-cat", "cat-sat", "sat-with", "with-matt"];
+      const groups = new Map();
+
+      for (const row of rows) {
+        const answerType = row.answerType === "A5" ? "A5-6" : row.answerType;
+        const boundaryPair = normalizeBoundaryPair(row.boundaryPair);
+        if (!boundaryPairs.includes(boundaryPair)) continue;
+        const key = `${answerType}|${boundaryPair}`;
+        if (!groups.has(key)) groups.set(key, { values: [] });
+        const group = groups.get(key);
+        group.values.push(row.boundaryMs);
+      }
+
+      const rowsOut = [];
+      for (const answerType of answerTypes) {
+        for (const stat of ["mean", "n", "sd"]) {
+          const out = { answerType, stat };
+          for (const pair of boundaryPairs) {
+            const group = groups.get(`${answerType}|${pair}`);
+            out[pair] = group ? summarizeValues(group.values, stat) : "";
+          }
+          rowsOut.push(out);
+        }
+      }
+      return rowsOut;
+    }
+
+    function normalizeBoundaryPair(pair) {
+      return pair === "with-mat" ? "with-matt" : pair;
+    }
+
+    function summarizeValues(values, stat) {
+      if (stat === "n") return values.length;
+      const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+      if (stat === "mean") return mean;
+      if (values.length < 2) return "";
+      const variance = values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (values.length - 1);
+      return Math.sqrt(variance);
+    }
+
+    function groupBoundaryRowsLong(rows) {
+      const groups = new Map();
+      for (const row of rows) {
+        const keys = [
+          `${row.speaker}|${row.answerType}|${row.boundaryPair}`,
+          `ALL|${row.answerType}|${row.boundaryPair}`
+        ];
+        for (const key of keys) {
+          if (!groups.has(key)) {
+            const [speaker, answerType, boundaryPair] = key.split("|");
+            groups.set(key, { speaker, answerType, boundaryPair, n: 0, sum: 0, rawSum: 0 });
+          }
+          const group = groups.get(key);
+          group.n++;
+          group.sum += row.boundaryMs;
+          group.rawSum += row.rawBoundaryMs;
+        }
+      }
+      return [...groups.values()].map((group) => ({
+        speaker: group.speaker,
+        answerType: group.answerType,
+        boundaryPair: group.boundaryPair,
+        n: group.n,
+        meanBoundaryMs: group.sum / group.n,
+        meanRawBoundaryMs: group.rawSum / group.n
+      })).sort((a, b) => (
+        a.speaker.localeCompare(b.speaker) ||
+        a.answerType.localeCompare(b.answerType) ||
+        a.boundaryPair.localeCompare(b.boundaryPair)
+      ));
+    }
+
+    function setBatchControlsDisabled(disabled) {
+      els.batchSpeakerBtn.disabled = disabled;
+      els.batchAllBtn.disabled = disabled;
+      els.downloadRowsBtn.disabled = disabled || !state.batchRows.length;
+      els.downloadGroupsBtn.disabled = disabled || !state.batchGroups.length;
+    }
+
+    function downloadCsv(filename, rows) {
+      if (!rows.length) return;
+      const columns = Object.keys(rows[0]);
+      const csv = [
+        columns.join(","),
+        ...rows.map((row) => columns.map((column) => csvCell(row[column])).join(","))
+      ].join("\n");
+      const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function csvCell(value) {
+      if (value == null || Number.isNaN(value)) return "";
+      const text = String(value);
+      return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    }
+
+    function updateBoxplotControls() {
+      const mode = els.boxCompareMode.value;
+      els.boxBoundaryPair.disabled = mode === "focus" || mode === "pairWithinType";
+      els.boxTypeALabel.style.display = mode === "focus" ? "none" : "inline-flex";
+      els.boxTypeBLabel.style.display = mode === "pair" ? "inline-flex" : "none";
+      els.boxPairALabel.style.display = mode === "pairWithinType" ? "inline-flex" : "none";
+      els.boxPairBLabel.style.display = mode === "pairWithinType" ? "inline-flex" : "none";
+      drawSelectedBoxplot();
+    }
+
+    function drawSelectedBoxplot() {
+      if (!els.boxplotCanvas) return;
+      if (!state.batchRows.length) {
+        clearBoxplot("Run batch analysis first.");
+        return;
+      }
+
+      const groups = getBoxplotGroups();
+      drawBoxplot(groups);
+    }
+
+    function getBoxplotGroups() {
+      const mode = els.boxCompareMode.value;
+      if (mode === "focus") return getFocusBoxplotGroups();
+      if (mode === "pairWithinType") return getBoundaryPairBoxplotGroups();
+
+      const pair = els.boxBoundaryPair.value;
+      const typeA = els.boxTypeA.value;
+      const rows = state.batchRows.filter((row) => normalizeBoundaryPair(row.boundaryPair) === pair);
+
+      if (mode === "oneRest") {
+        return [
+          { label: typeA, values: rows.filter((row) => normalizedAnswerType(row.answerType) === typeA).map((row) => row.boundaryMs) },
+          { label: `not ${typeA}`, values: rows.filter((row) => normalizedAnswerType(row.answerType) !== typeA).map((row) => row.boundaryMs) }
+        ];
+      }
+
+      const typeB = els.boxTypeB.value;
+      return [
+        { label: typeA, values: rows.filter((row) => normalizedAnswerType(row.answerType) === typeA).map((row) => row.boundaryMs) },
+        { label: typeB, values: rows.filter((row) => normalizedAnswerType(row.answerType) === typeB).map((row) => row.boundaryMs) }
+      ];
+    }
+
+    function getBoundaryPairBoxplotGroups() {
+      const type = els.boxTypeA.value;
+      const pairA = els.boxPairA.value;
+      const pairB = els.boxPairB.value;
+      const rows = state.batchRows.filter((row) => normalizedAnswerType(row.answerType) === type);
+      return [
+        { label: pairA, values: rows.filter((row) => normalizeBoundaryPair(row.boundaryPair) === pairA).map((row) => row.boundaryMs) },
+        { label: pairB, values: rows.filter((row) => normalizeBoundaryPair(row.boundaryPair) === pairB).map((row) => row.boundaryMs) }
+      ];
+    }
+
+    function getFocusBoxplotGroups() {
+      const beforeFocus = [];
+      const notBeforeFocus = [];
+      for (const row of state.batchRows) {
+        const type = normalizedAnswerType(row.answerType);
+        const pair = normalizeBoundaryPair(row.boundaryPair);
+        const isBeforeFocus = (
+          (type === "A3" && pair === "fat-cat") ||
+          (type === "A4" && pair === "cat-sat") ||
+          (type === "A5-6" && pair === "with-matt")
+        );
+        if (isBeforeFocus) beforeFocus.push(row.boundaryMs);
+        else if (["fat-cat", "cat-sat", "with-matt"].includes(pair)) notBeforeFocus.push(row.boundaryMs);
+      }
+      return [
+        { label: "AB before focus", values: beforeFocus },
+        { label: "AB not before focus", values: notBeforeFocus }
+      ];
+    }
+
+    function drawBoxplot(groups) {
+      const canvas = els.boxplotCanvas;
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(300 * dpr);
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const w = canvas.width / dpr;
+      const h = canvas.height / dpr;
+      const pad = { left: 66, right: 28, top: 22, bottom: 54 };
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#fffaf0";
+      ctx.fillRect(0, 0, w, h);
+
+      const summaries = groups.map((group) => ({ ...group, summary: boxSummary(group.values) }));
+      const allValues = groups.flatMap((group) => group.values).filter(Number.isFinite);
+      if (!allValues.length) {
+        clearBoxplot("No data for this comparison.");
+        return;
+      }
+
+      const yMin = 0;
+      const yMax = Math.max(10, percentile(allValues, 0.98) * 1.15);
+      const plotW = w - pad.left - pad.right;
+      const plotH = h - pad.top - pad.bottom;
+      const toY = (value) => pad.top + plotH - ((value - yMin) / (yMax - yMin)) * plotH;
+
+      drawBoxplotAxes(ctx, pad, w, h, yMin, yMax, toY);
+
+      summaries.forEach((group, index) => {
+        const x = pad.left + plotW * (index + 0.5) / summaries.length;
+        drawOneBox(ctx, x, toY, group.summary, group.label);
+      });
+
+      const hurdle = groups.length === 2 ? hurdleComparison(groups[0].values, groups[1].values) : null;
+      const tText = hurdle
+        ? `  Boundary presence: ${hurdle.aPositive}/${hurdle.aN} vs ${hurdle.bPositive}/${hurdle.bN}, Fisher p=${formatNumber(hurdle.fisherP, 4)}. Positive durations: Welch t=${formatNumber(hurdle.t?.t, 3)}, df=${formatNumber(hurdle.t?.df, 1)}, p=${formatNumber(hurdle.t?.p, 4)}`
+        : "";
+      els.boxplotSummary.textContent = summaries
+        .map((group) => `${group.label}: n=${group.values.length}, median=${formatNumber(group.summary.median, 1)} ms`)
+        .join("  ") + tText;
+    }
+
+    function clearBoxplot(message) {
+      const canvas = els.boxplotCanvas;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      els.boxplotSummary.textContent = message;
+    }
+
+    function drawBoxplotAxes(ctx, pad, w, h, yMin, yMax, toY) {
+      ctx.strokeStyle = "#d8cbb8";
+      ctx.fillStyle = "#6d665b";
+      ctx.lineWidth = 1;
+      ctx.font = "12px Georgia";
+      ctx.textAlign = "right";
+      const step = niceTick((yMax - yMin) / 5);
+      for (let value = 0; value <= yMax + 1e-9; value += step) {
+        const y = toY(value);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(w - pad.right, y);
+        ctx.stroke();
+        ctx.fillText(value.toFixed(0), pad.left - 10, y + 4);
+      }
+      ctx.textAlign = "center";
+      ctx.fillText("articulatory boundary (ms)", pad.left + (w - pad.left - pad.right) / 2, h - 14);
+    }
+
+    function drawOneBox(ctx, x, toY, summary, label) {
+      if (!Number.isFinite(summary.median)) return;
+      const boxW = 84;
+      const yQ1 = toY(summary.q1);
+      const yQ3 = toY(summary.q3);
+      const yMed = toY(summary.median);
+      const yLow = toY(summary.lowWhisker);
+      const yHigh = toY(summary.highWhisker);
+
+      ctx.strokeStyle = "#202018";
+      ctx.fillStyle = "rgba(182, 66, 44, 0.16)";
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(x, yLow);
+      ctx.lineTo(x, yQ1);
+      ctx.moveTo(x, yQ3);
+      ctx.lineTo(x, yHigh);
+      ctx.moveTo(x - boxW * 0.25, yLow);
+      ctx.lineTo(x + boxW * 0.25, yLow);
+      ctx.moveTo(x - boxW * 0.25, yHigh);
+      ctx.lineTo(x + boxW * 0.25, yHigh);
+      ctx.stroke();
+
+      ctx.fillRect(x - boxW / 2, yQ3, boxW, Math.max(1, yQ1 - yQ3));
+      ctx.strokeRect(x - boxW / 2, yQ3, boxW, Math.max(1, yQ1 - yQ3));
+      ctx.strokeStyle = "#b6422c";
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      ctx.moveTo(x - boxW / 2, yMed);
+      ctx.lineTo(x + boxW / 2, yMed);
+      ctx.stroke();
+
+      ctx.fillStyle = "#244c8f";
+      for (const value of summary.outliers) {
+        ctx.beginPath();
+        ctx.arc(x + jitter(value) * boxW * 0.35, toY(value), 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.fillStyle = "#202018";
+      ctx.font = "13px Georgia";
+      ctx.textAlign = "center";
+      ctx.fillText(label, x, 270);
+      ctx.fillStyle = "#6d665b";
+      ctx.font = "11px Georgia";
+      ctx.fillText(`n=${summary.n}`, x, 286);
+    }
+
+    function boxSummary(values) {
+      const sorted = values.filter(Number.isFinite).slice().sort((a, b) => a - b);
+      if (!sorted.length) return { n: 0, q1: NaN, median: NaN, q3: NaN, lowWhisker: NaN, highWhisker: NaN, outliers: [] };
+      const q1 = quantile(sorted, 0.25);
+      const median = quantile(sorted, 0.5);
+      const q3 = quantile(sorted, 0.75);
+      const iqr = q3 - q1;
+      const lowFence = q1 - 1.5 * iqr;
+      const highFence = q3 + 1.5 * iqr;
+      const nonOutliers = sorted.filter((value) => value >= lowFence && value <= highFence);
+      return {
+        n: sorted.length,
+        q1,
+        median,
+        q3,
+        lowWhisker: nonOutliers[0],
+        highWhisker: nonOutliers.at(-1),
+        outliers: sorted.filter((value) => value < lowFence || value > highFence)
+      };
+    }
+
+    function quantile(sorted, p) {
+      if (!sorted.length) return NaN;
+      const pos = (sorted.length - 1) * p;
+      const lo = Math.floor(pos);
+      const hi = Math.ceil(pos);
+      if (lo === hi) return sorted[lo];
+      return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
+    }
+
+    function normalizedAnswerType(type) {
+      return type === "A5" || type === "A6" ? "A5-6" : type;
+    }
+
+    function welchTTest(a, b) {
+      const x = a.filter(Number.isFinite);
+      const y = b.filter(Number.isFinite);
+      if (x.length < 2 || y.length < 2) return null;
+      const mx = mean(x);
+      const my = mean(y);
+      const vx = sampleVariance(x, mx);
+      const vy = sampleVariance(y, my);
+      const se2 = vx / x.length + vy / y.length;
+      if (se2 <= 0) return null;
+      const t = (mx - my) / Math.sqrt(se2);
+      const df = (se2 ** 2) / ((vx / x.length) ** 2 / (x.length - 1) + (vy / y.length) ** 2 / (y.length - 1));
+      return { t, df, p: twoSidedTPValue(t, df) };
+    }
+
+    function hurdleComparison(a, b) {
+      const x = a.filter(Number.isFinite);
+      const y = b.filter(Number.isFinite);
+      const xPos = x.filter((value) => value > 0);
+      const yPos = y.filter((value) => value > 0);
+      return {
+        aN: x.length,
+        bN: y.length,
+        aPositive: xPos.length,
+        bPositive: yPos.length,
+        fisherP: fisherExactTwoSided(xPos.length, x.length - xPos.length, yPos.length, y.length - yPos.length),
+        t: welchTTest(xPos, yPos)
+      };
+    }
+
+    function fisherExactTwoSided(a, b, c, d) {
+      const row1 = a + b;
+      const row2 = c + d;
+      const col1 = a + c;
+      const n = row1 + row2;
+      if (n === 0) return NaN;
+      const observed = hypergeomProb(a, row1, col1, n);
+      const minA = Math.max(0, col1 - row2);
+      const maxA = Math.min(row1, col1);
+      let p = 0;
+      for (let x = minA; x <= maxA; x++) {
+        const prob = hypergeomProb(x, row1, col1, n);
+        if (prob <= observed + 1e-12) p += prob;
+      }
+      return Math.min(1, p);
+    }
+
+    function hypergeomProb(a, row1, col1, n) {
+      return Math.exp(
+        logChoose(col1, a) +
+        logChoose(n - col1, row1 - a) -
+        logChoose(n, row1)
+      );
+    }
+
+    function logChoose(n, k) {
+      if (k < 0 || k > n) return -Infinity;
+      return logGamma(n + 1) - logGamma(k + 1) - logGamma(n - k + 1);
+    }
+
+    function mean(values) {
+      return values.reduce((sum, value) => sum + value, 0) / values.length;
+    }
+
+    function sampleVariance(values, meanValue) {
+      return values.reduce((sum, value) => sum + (value - meanValue) ** 2, 0) / (values.length - 1);
+    }
+
+    function twoSidedTPValue(t, df) {
+      if (!Number.isFinite(t) || !Number.isFinite(df) || df <= 0) return NaN;
+      const x = df / (df + t * t);
+      return regularizedIncompleteBeta(x, df / 2, 0.5);
+    }
+
+    function regularizedIncompleteBeta(x, a, b) {
+      if (x <= 0) return 0;
+      if (x >= 1) return 1;
+      const bt = Math.exp(logGamma(a + b) - logGamma(a) - logGamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+      if (x < (a + 1) / (a + b + 2)) return bt * betaContinuedFraction(x, a, b) / a;
+      return 1 - bt * betaContinuedFraction(1 - x, b, a) / b;
+    }
+
+    function betaContinuedFraction(x, a, b) {
+      const maxIter = 100;
+      const eps = 3e-7;
+      const fpmin = 1e-30;
+      const qab = a + b;
+      const qap = a + 1;
+      const qam = a - 1;
+      let c = 1;
+      let d = 1 - qab * x / qap;
+      if (Math.abs(d) < fpmin) d = fpmin;
+      d = 1 / d;
+      let h = d;
+
+      for (let m = 1; m <= maxIter; m++) {
+        const m2 = 2 * m;
+        let aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+        d = 1 + aa * d;
+        if (Math.abs(d) < fpmin) d = fpmin;
+        c = 1 + aa / c;
+        if (Math.abs(c) < fpmin) c = fpmin;
+        d = 1 / d;
+        h *= d * c;
+        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+        d = 1 + aa * d;
+        if (Math.abs(d) < fpmin) d = fpmin;
+        c = 1 + aa / c;
+        if (Math.abs(c) < fpmin) c = fpmin;
+        d = 1 / d;
+        const del = d * c;
+        h *= del;
+        if (Math.abs(del - 1) < eps) break;
+      }
+      return h;
+    }
+
+    function logGamma(z) {
+      const coeff = [
+        676.5203681218851,
+        -1259.1392167224028,
+        771.3234287776531,
+        -176.6150291621406,
+        12.507343278686905,
+        -0.13857109526572012,
+        9.984369578019571e-6,
+        1.5056327351493116e-7
+      ];
+      if (z < 0.5) return Math.log(Math.PI) - Math.log(Math.sin(Math.PI * z)) - logGamma(1 - z);
+      z -= 1;
+      let x = 0.9999999999998099;
+      for (let i = 0; i < coeff.length; i++) x += coeff[i] / (z + i + 1);
+      const t = z + coeff.length - 0.5;
+      return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+    }
+
+    function jitter(value) {
+      const x = Math.sin(value * 12.9898) * 43758.5453;
+      return (x - Math.floor(x)) - 0.5;
+    }
+
+    function computeVelocities(channels, settings) {
+      const velocities = {};
+      for (const name of Object.keys(channels).filter((channel) => channel !== "TB")) {
+        const values = channels[name];
+        if (!values) continue;
+        velocities[name] = spectralDerivative(values, EMA_SR, settings.lowpass, settings.smoothing);
+      }
+      return velocities;
+    }
+
+    function spectralDerivative(values, sampleRate, lowpass, smoothing) {
+      const originalLength = values.length;
+      const n = nextPow2(originalLength * 2);
+      const re = new Float64Array(n);
+      const im = new Float64Array(n);
+      const filled = fillMissing(values);
+      const mean = average(filled);
+
+      for (let i = 0; i < originalLength; i++) re[i] = filled[i] - mean;
+      fft(re, im, false);
+
+      for (let k = 0; k < n; k++) {
+        const frequency = k <= n / 2 ? k * sampleRate / n : (k - n) * sampleRate / n;
+        const omega = 2 * Math.PI * frequency;
+        const gain = lowpassGain(Math.abs(frequency), lowpass, smoothing);
+        const oldRe = re[k];
+        const oldIm = im[k];
+        re[k] = -omega * oldIm * gain;
+        im[k] = omega * oldRe * gain;
+      }
+
+      fft(re, im, true);
+      return Float32Array.from(re.slice(0, originalLength));
+    }
+
+    function findVelocityPeak(values, interval, mode) {
+      if (!values) return { time: NaN, value: NaN, index: -1 };
+      const start = Math.max(0, Math.floor(interval.xmin * EMA_SR));
+      const end = Math.min(values.length - 1, Math.ceil(interval.xmax * EMA_SR));
+      let bestIndex = start;
+      let bestScore = -Infinity;
+
+      for (let i = start; i <= end; i++) {
+        const value = values[i];
+        if (!Number.isFinite(value)) continue;
+        const score = velocityScore(value, mode);
+        if (score > bestScore) {
+          bestScore = score;
+          bestIndex = i;
+        }
+      }
+
+      const refinedTime = refinePeakTime(values, bestIndex, mode);
+      return {
+        time: refinedTime,
+        value: values[bestIndex],
+        index: bestIndex
+      };
+    }
+
+    function findPositionMinimum(values, interval) {
+      const start = Math.max(0, Math.floor(interval.xmin * EMA_SR));
+      const end = Math.min(values.length - 1, Math.ceil(interval.xmax * EMA_SR));
+      let bestIndex = start;
+      let bestValue = Infinity;
+
+      for (let i = start; i <= end; i++) {
+        const value = values[i];
+        if (Number.isFinite(value) && value < bestValue) {
+          bestValue = value;
+          bestIndex = i;
+        }
+      }
+
+      return {
+        time: refineMinimumTime(values, bestIndex),
+        value: bestValue,
+        index: bestIndex
+      };
+    }
+
+    function refinePeakTime(values, index, mode) {
+      if (index <= 0 || index >= values.length - 1) return index / EMA_SR;
+      const y0 = velocityScore(values[index - 1], mode);
+      const y1 = velocityScore(values[index], mode);
+      const y2 = velocityScore(values[index + 1], mode);
+      const offset = parabolaPeakOffset(y0, y1, y2);
+      return (index + offset) / EMA_SR;
+    }
+
+    function refineMinimumTime(values, index) {
+      if (index <= 0 || index >= values.length - 1) return index / EMA_SR;
+      const offset = parabolaPeakOffset(-values[index - 1], -values[index], -values[index + 1]);
+      return (index + offset) / EMA_SR;
+    }
+
+    function velocityScore(value, mode) {
+      if (mode === "positive") return value;
+      if (mode === "negative") return -value;
+      return Math.abs(value);
+    }
+
+    function parabolaPeakOffset(y0, y1, y2) {
+      const denom = y0 - 2 * y1 + y2;
+      if (!Number.isFinite(denom) || Math.abs(denom) < 1e-12) return 0;
+      return Math.max(-0.5, Math.min(0.5, 0.5 * (y0 - y2) / denom));
+    }
+
+    function getDerivativeSettings() {
+      const lowpass = clamp(Number(els.lowpassInput.value) || 20, 1, EMA_SR / 2);
+      const smoothing = clamp(Number(els.smoothInput.value) || 0, 0, EMA_SR / 2);
+      return { lowpass, smoothing };
+    }
+
+    function getSearchPadding() {
+      return {
+        pre: clamp(Number(els.preWindowInput.value) || 0, 0, 1),
+        post: clamp(Number(els.postWindowInput.value) || 0, 0, 1)
+      };
+    }
+
+    function getSamplingThreshold() {
+      return clamp(Number(els.samplingThresholdInput.value) || 0, 0, 20);
+    }
+
+    function getSyllableMagnitudeMultiplier(word) {
+      return word === "with" && els.scaleWithToggle.checked ? 1 / 3 : 1;
+    }
+
+    function activeChannelNames() {
+      return Object.keys(state.metadata?.channels || {}).filter((name) => name !== "TB");
+    }
+
+    function tieredTrackHeight() {
+      const tierCount = activeChannelNames().length * 2;
+      return tierCount ? tierCount * 48 + Math.max(0, tierCount - 1) * 8 : 260;
+    }
+
+    function tieredCanvasHeight() {
+      return stackedCanvasHeight(tieredTrackHeight());
+    }
+
+    function stackedCanvasHeight(trackHeight) {
+      return 124 + PULSE_TIER_HEIGHT + 18 + 110 + 32 + trackHeight + 48;
+    }
+
+    function trackDisplayLabel() {
+      if (els.trackDisplay.value === "velocity") return "showing velocity (units/s)";
+      if (els.trackDisplay.value === "tiers") return "showing separate position and velocity tiers";
+      return "showing position";
+    }
+
+    function choosePlotWindow(intervals, metadata) {
+      const startIdx = intervals.findIndex((item) => metadata.startWords.includes(item.text));
+      const searchFrom = startIdx >= 0 ? startIdx + 1 : 0;
+      const targets = intervals.slice(searchFrom).filter((item) => metadata.wordLabels.includes(item.text));
+      if (targets.length) {
+        return {
+          start: Math.max(0, targets[0].xmin - 0.35),
+          end: targets[targets.length - 1].xmax + 0.35
+        };
+      }
+      if (startIdx >= 0) {
+        return {
+          start: Math.max(0, intervals[startIdx].xmin - 0.35),
+          end: Math.min(intervals.at(-1).xmax, intervals[startIdx].xmax + 2.5)
+        };
+      }
+      return { start: 0, end: Math.min(4, intervals.at(-1)?.xmax || 4) };
+    }
+
+    async function discoverSpeakers() {
+      const discovered = new Set();
+      try {
+        const indexHtml = await fetchText(".");
+        const re = /href="([^"]+\/)"/g;
+        let match;
+        while ((match = re.exec(indexHtml)) !== null) {
+          const dir = decodeURIComponent(match[1]).replace(/\/$/, "");
+          if (/^[A-Za-z0-9_-]+-CD$/.test(dir)) discovered.add(dir);
+        }
+      } catch (err) {
+        console.warn("Could not inspect directory listing, using fallback speakers.", err);
+      }
+
+      for (const speaker of FALLBACK_SPEAKERS) discovered.add(speaker);
+
+      const usable = [];
+      for (const speaker of [...discovered].sort()) {
+        try {
+          await fetchText(`${encodeURIComponent(speaker)}/metadata.txt`);
+          usable.push(speaker);
+        } catch (err) {
+          console.warn(`Skipping ${speaker}: metadata.txt not found.`);
+        }
+      }
+
+      if (!usable.length) throw new Error("No speaker folders with metadata.txt were found.");
+      return usable;
+    }
+
+    async function fetchSpeakerPromptText(speaker) {
+      const promptPath = await findSpeakerPromptPath(speaker);
+      if (!promptPath) return "";
+      return fetchText(promptPath);
+    }
+
+    async function findSpeakerPromptPath(speaker) {
+      try {
+        const indexHtml = await fetchText(`${encodeURIComponent(speaker)}/`);
+        const re = /href="([^"]*msl_[^"]+\.txt)"/g;
+        const match = re.exec(indexHtml);
+        if (match) return `${encodeURIComponent(speaker)}/${match[1]}`;
+      } catch (err) {
+        console.warn(`Could not inspect prompt listing for ${speaker}.`, err);
+      }
+
+      const prefix = speaker.replace(/-CD$/, "");
+      const candidates = [
+        `${encodeURIComponent(speaker)}/msl_${prefix}.txt`,
+        `${encodeURIComponent(speaker)}/msl_${prefix}24-02-06.txt`,
+        `${encodeURIComponent(speaker)}/msl_${prefix}24-02-07.txt`,
+        `${encodeURIComponent(speaker)}/msl_${prefix}24-02-02.txt`,
+        `${encodeURIComponent(speaker)}/msl_${prefix}24-01-31.txt`
+      ];
+      for (const candidate of candidates) {
+        try {
+          await fetchText(candidate);
+          return candidate;
+        } catch (err) {
+          // Try the next known naming pattern.
+        }
+      }
+      return null;
+    }
+
+    function speakerPath(path) {
+      return `${encodeURIComponent(state.speaker)}/${path}`;
+    }
+
+    function parseMetadata(text) {
+      const firstfile = numberValue(text, "firstfile");
+      const lastfile = numberValue(text, "lastfile");
+      const blacklist = arrayValue(text, "blacklist#").map(Number);
+      const startWords = arrayValue(text, "startWords#");
+      const wordLabels = arrayValue(text, "wordLabels$#");
+      const channels = {};
+      for (const name of ["LL", "TT", "TB", "TD", "JW"]) {
+        channels[name] = numberValue(text, name);
+      }
+      return { firstfile, lastfile, blacklist, startWords, wordLabels, channels };
+    }
+
+    function numberValue(text, key) {
+      const match = text.match(new RegExp(`${escapeRegex(key)}\\s*=\\s*(\\d+)`));
+      return match ? Number(match[1]) : null;
+    }
+
+    function arrayValue(text, key) {
+      const match = text.match(new RegExp(`${escapeRegex(key)}\\s*=\\s*\\{([^}]*)\\}`));
+      if (!match) return [];
+      return match[1].split(",")
+        .map((item) => item.trim().replace(/^"|"$/g, ""))
+        .filter(Boolean);
+    }
+
+    function parseAudioLog(text) {
+      const rows = new Map();
+      for (const line of text.split(/\r?\n/).slice(1)) {
+        if (!line.trim()) continue;
+        const id = line.match(/^(\d{4})/)?.[1];
+        if (!id) continue;
+        const critical = line.match(/Critical sample variation found for expected sampling rate \(([^)]+)\)/);
+        const trailingPercent = line.match(/(\d+(?:\.\d+)?)%\s*$/);
+        const numericPercent = critical
+          ? parsePercent(critical[1])
+          : trailingPercent
+            ? Number(trailingPercent[1])
+            : NaN;
+        if (critical) {
+          rows.set(id, { status: "Critical", percent: critical[1], numericPercent });
+        } else if (/audio length OK/.test(line)) {
+          rows.set(id, { status: "OK", percent: trailingPercent ? `${trailingPercent[1]}%` : "OK", numericPercent });
+        } else {
+          rows.set(id, { status: "OK", percent: trailingPercent ? `${trailingPercent[1]}%` : "unknown", numericPercent });
+        }
+      }
+      return rows;
+    }
+
+    function parsePercent(value) {
+      const match = String(value).match(/(\d+(?:\.\d+)?)/);
+      return match ? Number(match[1]) : NaN;
+    }
+
+    function parsePrompts(text) {
+      const prompts = new Map();
+      const lines = text.split(/\r?\n/);
+      for (let i = 0; i < lines.length; i++) {
+        const sweep = i + 1;
+        const rawLine = lines[i];
+        const line = rawLine.trim();
+        if (!line.includes("|")) continue;
+        const answer = cleanPromptAnswer(line.split("|").slice(1).join("|"));
+        prompts.set(sweep, answer);
+      }
+      return prompts;
+    }
+
+    function parsePromptTypes(text) {
+      const types = new Map();
+      const lines = text.split(/\r?\n/);
+      for (let i = 0; i < lines.length; i++) {
+        const sweep = i + 1;
+        const answerPart = lines[i].split("|").slice(1).join("|");
+        const match = answerPart.match(/\bA(\d+)\./i);
+        if (!match) continue;
+        types.set(sweep, collapseAnswerType(`A${match[1]}`));
+      }
+      return types;
+    }
+
+    function collapseAnswerType(type) {
+      return type === "A6" ? "A5" : type;
+    }
+
+    function cleanPromptAnswer(answer) {
+      return answer
+        .replace(/^A\d+\.\s*/i, "")
+        .replace(/%%/g, "")
+        .replace(/##/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function buildSweepList(metadata, audioLog = new Map()) {
+      const blacklist = new Set(metadata.blacklist);
+      const sweeps = [];
+      for (let sweep = metadata.firstfile; sweep <= metadata.lastfile; sweep++) {
+        if (!blacklist.has(sweep) && sweepPassesSamplingThreshold(sweep, audioLog)) sweeps.push(sweep);
+      }
+      return sweeps;
+    }
+
+    function sweepPassesSamplingThreshold(sweep, audioLog) {
+      const log = audioLog.get(padSweep(sweep));
+      if (!log || !Number.isFinite(log.numericPercent)) return true;
+      return log.numericPercent <= getSamplingThreshold();
+    }
+
+    function parseTextGridTier(text, tierName) {
+      const tierStart = text.search(new RegExp(`name\\s*=\\s*"${escapeRegex(tierName)}"`));
+      if (tierStart < 0) return [];
+      const nextTier = text.slice(tierStart + 1).search(/\n\s*item \[\d+\]:/);
+      const tier = nextTier >= 0
+        ? text.slice(tierStart, tierStart + 1 + nextTier)
+        : text.slice(tierStart);
+      const intervals = [];
+      const re = /intervals \[\d+\]:\s*xmin = ([\d.]+)\s*xmax = ([\d.]+)\s*text = "([^"]*)"/g;
+      let match;
+      while ((match = re.exec(tier)) !== null) {
+        intervals.push({
+          xmin: Number(match[1]),
+          xmax: Number(match[2]),
+          text: match[3].trim().toLowerCase()
+        });
+      }
+      return intervals;
+    }
+
+    function parsePos(text, channelColumns) {
+      const lines = text.trim().split(/\r?\n/);
+      const header = lines.shift().split(/\t/);
+      const channels = {};
+      for (const [name, oneBasedColumn] of Object.entries(channelColumns)) {
+        const column = oneBasedColumn - 1;
+        channels[name] = new Float32Array(lines.length);
+        channels[name].header = header[column] || `column ${oneBasedColumn}`;
+      }
+      lines.forEach((line, row) => {
+        const cols = line.split(/\t/);
+        for (const [name, oneBasedColumn] of Object.entries(channelColumns)) {
+          const value = Number(cols[oneBasedColumn - 1]);
+          channels[name][row] = Number.isFinite(value) ? value : NaN;
+        }
+      });
+      return { channels, sampleCount: lines.length };
+    }
+
+    async function estimateClenchBaselineFor(speaker, metadata) {
+      const candidates = speaker === "BNY-CD" ? ["0001", "0002"] : ["0001"];
+      const estimates = [];
+      for (const id of candidates) {
+        try {
+          const text = await fetchText(`${encodeURIComponent(speaker)}/pos/${id}.txt`);
+          const pos = parsePos(text, metadata.channels);
+          const estimate = estimateClenchFromPos(pos, id);
+          if (estimate) estimates.push(estimate);
+        } catch (err) {
+          console.warn(`Could not load clench candidate ${id}.`, err);
+        }
+      }
+      if (!estimates.length) return null;
+      estimates.sort((a, b) => (a.jawSd + a.llSd) - (b.jawSd + b.llSd));
+      return estimates[0];
+    }
+
+    function estimateClenchFromPos(pos, id) {
+      const jaw = pos.channels.JW;
+      const ll = pos.channels.LL;
+      if (!jaw || !ll) return null;
+      const start = Math.min(jaw.length - 1, Math.floor(jaw.length * 0.25));
+      const end = Math.max(start + 1, Math.floor(jaw.length * 0.75));
+      const jawValues = [];
+      const llValues = [];
+
+      for (let i = start; i < end; i++) {
+        if (Number.isFinite(jaw[i]) && Number.isFinite(ll[i])) {
+          jawValues.push(jaw[i]);
+          llValues.push(ll[i]);
+        }
+      }
+
+      if (!jawValues.length) return null;
+      const jawY = average(jawValues);
+      const llY = average(llValues);
+      return {
+        sweep: id,
+        jawY,
+        llY,
+        jawSd: standardDeviation(jawValues, jawY),
+        llSd: standardDeviation(llValues, llY),
+        jawLlDiff: jawY - llY
+      };
+    }
+
+    function expandInterval(interval, padding) {
+      return { xmin: interval.xmin - padding, xmax: interval.xmax + padding };
+    }
+
+    function clampInterval(interval, bounds) {
+      return {
+        xmin: Math.max(bounds.xmin, interval.xmin),
+        xmax: Math.min(bounds.xmax, interval.xmax)
+      };
+    }
+
+    function fillMissing(values) {
+      const filled = new Float64Array(values.length);
+      let last = 0;
+      let hasLast = false;
+      for (let i = 0; i < values.length; i++) {
+        const value = values[i];
+        if (Number.isFinite(value)) {
+          filled[i] = value;
+          last = value;
+          hasLast = true;
+        } else {
+          filled[i] = hasLast ? last : 0;
+        }
+      }
+      return filled;
+    }
+
+    function average(values) {
+      let sum = 0;
+      for (const value of values) sum += value;
+      return values.length ? sum / values.length : 0;
+    }
+
+    function standardDeviation(values, mean) {
+      if (!values.length) return 0;
+      let sumSq = 0;
+      for (const value of values) sumSq += (value - mean) ** 2;
+      return Math.sqrt(sumSq / values.length);
+    }
+
+    function lowpassGain(frequency, lowpass, smoothing) {
+      if (frequency <= lowpass) return 1;
+      if (smoothing <= 0 || frequency >= lowpass + smoothing) return 0;
+      const u = (frequency - lowpass) / smoothing;
+      return 0.5 * (1 + Math.cos(Math.PI * u));
+    }
+
+    function nextPow2(value) {
+      let n = 1;
+      while (n < value) n <<= 1;
+      return n;
+    }
+
+    function fft(re, im, inverse) {
+      const n = re.length;
+      for (let i = 1, j = 0; i < n; i++) {
+        let bit = n >> 1;
+        for (; j & bit; bit >>= 1) j ^= bit;
+        j ^= bit;
+        if (i < j) {
+          [re[i], re[j]] = [re[j], re[i]];
+          [im[i], im[j]] = [im[j], im[i]];
+        }
+      }
+
+      for (let len = 2; len <= n; len <<= 1) {
+        const angle = (inverse ? 2 : -2) * Math.PI / len;
+        const wLenRe = Math.cos(angle);
+        const wLenIm = Math.sin(angle);
+        for (let i = 0; i < n; i += len) {
+          let wRe = 1;
+          let wIm = 0;
+          for (let j = 0; j < len / 2; j++) {
+            const uRe = re[i + j];
+            const uIm = im[i + j];
+            const vRe = re[i + j + len / 2] * wRe - im[i + j + len / 2] * wIm;
+            const vIm = re[i + j + len / 2] * wIm + im[i + j + len / 2] * wRe;
+            re[i + j] = uRe + vRe;
+            im[i + j] = uIm + vIm;
+            re[i + j + len / 2] = uRe - vRe;
+            im[i + j + len / 2] = uIm - vIm;
+            const nextWRe = wRe * wLenRe - wIm * wLenIm;
+            wIm = wRe * wLenIm + wIm * wLenRe;
+            wRe = nextWRe;
+          }
+        }
+      }
+
+      if (inverse) {
+        for (let i = 0; i < n; i++) {
+          re[i] /= n;
+          im[i] /= n;
+        }
+      }
+    }
+
+    async function decodeAudio(buffer) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioCtx();
+      return ctx.decodeAudioData(buffer.slice(0));
+    }
+
+    async function fetchText(path) {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`Could not fetch ${path}: ${response.status}`);
+      return response.text();
+    }
+
+    async function fetchArrayBuffer(path) {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`Could not fetch ${path}: ${response.status}`);
+      return response.arrayBuffer();
+    }
+
+    function setStatus(message, isError = false) {
+      els.status.textContent = message;
+      els.status.style.color = isError ? "var(--critical)" : "var(--muted)";
+    }
+
+    function padSweep(sweep) {
+      return String(sweep).padStart(4, "0");
+    }
+
+    function getCss(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function escapeRegex(value) {
+      return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    function formatTime(value) {
+      return Number.isFinite(value) ? value.toFixed(4) : "-";
+    }
+
+    function formatNumber(value, digits) {
+      return Number.isFinite(value) ? value.toFixed(digits) : "-";
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function percentile(values, p) {
+      if (!values.length) return 0;
+      const sorted = values.slice().sort((a, b) => a - b);
+      const idx = Math.min(sorted.length - 1, Math.max(0, Math.floor(p * (sorted.length - 1))));
+      return sorted[idx];
+    }
+
+    function niceTick(raw) {
+      const exp = Math.floor(Math.log10(raw || 1));
+      const base = raw / Math.pow(10, exp);
+      const nice = base <= 1 ? 1 : base <= 2 ? 2 : base <= 5 ? 5 : 10;
+      return nice * Math.pow(10, exp);
+    }
+
+    function roundedRect(ctx, x, y, w, h, r) {
+      const radius = Math.min(r, w / 2, h / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + w - radius, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+      ctx.lineTo(x + w, y + h - radius);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+      ctx.lineTo(x + radius, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+  </script>
+</body>
+</html>

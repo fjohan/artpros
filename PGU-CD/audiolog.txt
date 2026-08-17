@@ -1,0 +1,304 @@
+Sweep 	Rec.Status 	Analysis 	 Smp Data	 Duration 	 Smp Sound	 Duration 	Freq Data 	Freq Sound 	SndSmpDiff	Diff sec	Diff %
+0001	recording OK	audio length OK	    13745	   10.996s	    527851	   10.997s	1249.898Hz	48003.911Hz	     43	  0.001s	0.0081%
+0002	recording OK	Critical sample variation found for expected sampling rate (0.038%):	    13740	   10.992s	    527418	   10.988s	1250.469Hz	47981.987Hz	   -198	  0.004s	0.0375%
+0003	recording OK	Critical sample variation found for expected sampling rate (0.528%):	    13760	   11.008s	    525594	   10.950s	1256.635Hz	47746.548Hz	  -2790	  0.058s	0.5280%
+0004	recording OK	audio length OK	    13730	   10.984s	    527274	   10.985s	1249.900Hz	48003.824Hz	     42	  0.001s	0.0080%
+0005	recording OK	Critical sample variation found for expected sampling rate (0.128%):	    13740	   10.992s	    526939	   10.978s	1251.606Hz	47938.410Hz	   -677	  0.014s	0.1283%
+0006	recording OK	Critical sample variation found for expected sampling rate (0.448%):	    13715	   10.972s	    524298	   10.923s	1255.622Hz	47785.089Hz	  -2358	  0.049s	0.4477%
+0007	recording OK	audio length OK	    13740	   10.992s	    527659	   10.993s	1249.898Hz	48003.912Hz	     43	  0.001s	0.0081%
+0008	recording OK	Critical sample variation found for expected sampling rate (0.156%):	    13755	   11.004s	    527370	   10.987s	1251.948Hz	47925.300Hz	   -822	  0.017s	0.1556%
+0009	recording OK	audio length OK	    13715	   10.972s	    526698	   10.973s	1249.900Hz	48003.828Hz	     42	  0.001s	0.0080%
+0010	recording OK	audio length OK	    13775	   11.020s	    529002	   11.021s	1249.901Hz	48003.811Hz	     42	  0.001s	0.0079%
+0011	recording OK	audio length OK	    13725	   10.980s	    527082	   10.981s	1249.900Hz	48003.825Hz	     42	  0.001s	0.0080%
+0012	recording OK	Critical sample variation found for expected sampling rate (0.512%):	    13705	   10.964s	    523578	   10.908s	1256.432Hz	47754.287Hz	  -2694	  0.056s	0.5119%
+0013	recording OK	Critical sample variation found for expected sampling rate (0.120%):	    13715	   10.972s	    526026	   10.959s	1251.497Hz	47942.581Hz	   -630	  0.013s	0.1196%
+0014	recording OK	Critical sample variation found for expected sampling rate (0.564%):	    13765	   11.012s	    525595	   10.950s	1257.090Hz	47729.295Hz	  -2981	  0.062s	0.5640%
+0015	recording OK	audio length OK	    13760	   11.008s	    528426	   11.009s	1249.901Hz	48003.815Hz	     42	  0.001s	0.0079%
+0016	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0017	recording OK	audio length OK	    13740	   10.992s	    527658	   10.993s	1249.901Hz	48003.821Hz	     42	  0.001s	0.0080%
+0018	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0019	recording OK	audio length OK	    13760	   11.008s	    528427	   11.009s	1249.898Hz	48003.906Hz	     43	  0.001s	0.0081%
+0020	recording OK	Critical sample variation found for expected sampling rate (0.165%):	    13745	   10.996s	    526939	   10.978s	1252.061Hz	47920.971Hz	   -869	  0.018s	0.1646%
+0021	recording OK	Critical sample variation found for expected sampling rate (0.392%):	    13735	   10.988s	    525354	   10.945s	1254.925Hz	47811.613Hz	  -2070	  0.043s	0.3925%
+0022	recording OK	Critical sample variation found for expected sampling rate (0.165%):	    13745	   10.996s	    526938	   10.978s	1252.064Hz	47920.880Hz	   -870	  0.018s	0.1648%
+0023	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0024	recording OK	audio length OK	    13720	   10.976s	    526890	   10.977s	1249.900Hz	48003.827Hz	     42	  0.001s	0.0080%
+0025	recording OK	Critical sample variation found for expected sampling rate (0.474%):	    13745	   10.996s	    525306	   10.944s	1255.954Hz	47772.463Hz	  -2502	  0.052s	0.4740%
+0026	recording OK	Critical sample variation found for expected sampling rate (0.010%):	    13760	   11.008s	    528331	   11.007s	1250.125Hz	47995.185Hz	    -53	  0.001s	0.0100%
+0027	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0028	recording OK	Critical sample variation found for expected sampling rate (0.046%):	    13785	   11.028s	    529099	   11.023s	1250.579Hz	47977.784Hz	   -245	  0.005s	0.0463%
+0029	recording OK	Critical sample variation found for expected sampling rate (0.702%):	    13725	   10.980s	    523338	   10.903s	1258.842Hz	47662.842Hz	  -3702	  0.077s	0.7024%
+0030	recording OK	audio length OK	    13765	   11.012s	    528619	   11.013s	1249.898Hz	48003.905Hz	     43	  0.001s	0.0081%
+0031	recording OK	audio length OK	    13705	   10.964s	    526314	   10.965s	1249.900Hz	48003.831Hz	     42	  0.001s	0.0080%
+0032	recording OK	audio length OK	    13770	   11.016s	    528810	   11.017s	1249.901Hz	48003.813Hz	     42	  0.001s	0.0079%
+0033	recording OK	Critical sample variation found for expected sampling rate (0.083%):	    13750	   11.000s	    527562	   10.991s	1251.038Hz	47960.182Hz	   -438	  0.009s	0.0830%
+0034	recording OK	audio length OK	    13760	   11.008s	    528426	   11.009s	1249.901Hz	48003.815Hz	     42	  0.001s	0.0079%
+0035	recording OK	Critical sample variation found for expected sampling rate (0.138%):	    13720	   10.976s	    526123	   10.961s	1251.723Hz	47933.947Hz	   -725	  0.015s	0.1376%
+0036	recording OK	Critical sample variation found for expected sampling rate (0.546%):	    13755	   11.004s	    525306	   10.944s	1256.867Hz	47737.732Hz	  -2886	  0.060s	0.5464%
+0037	recording OK	audio length OK	    13755	   11.004s	    528235	   11.005s	1249.898Hz	48003.908Hz	     43	  0.001s	0.0081%
+0038	recording OK	Critical sample variation found for expected sampling rate (0.164%):	    13795	   11.036s	    528859	   11.018s	1252.054Hz	47921.258Hz	   -869	  0.018s	0.1640%
+0039	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0040	recording OK	Critical sample variation found for expected sampling rate (0.083%):	    13765	   11.012s	    528139	   11.003s	1251.034Hz	47960.316Hz	   -437	  0.009s	0.0827%
+0041	recording OK	audio length OK	    13735	   10.988s	    527467	   10.989s	1249.898Hz	48003.913Hz	     43	  0.001s	0.0082%
+0042	recording OK	Critical sample variation found for expected sampling rate (0.138%):	    13735	   10.988s	    526698	   10.973s	1251.723Hz	47933.928Hz	   -726	  0.015s	0.1377%
+0043	recording OK	audio length OK	    13715	   10.972s	    526698	   10.973s	1249.900Hz	48003.828Hz	     42	  0.001s	0.0080%
+0044	recording OK	Critical sample variation found for expected sampling rate (0.156%):	    13750	   11.000s	    527178	   10.983s	1251.949Hz	47925.273Hz	   -822	  0.017s	0.1557%
+0045	recording OK	audio length OK	    13750	   11.000s	    528042	   11.001s	1249.901Hz	48003.818Hz	     42	  0.001s	0.0080%
+0046	recording OK	Critical sample variation found for expected sampling rate (0.584%):	    13725	   10.980s	    523963	   10.916s	1257.341Hz	47719.763Hz	  -3077	  0.064s	0.5838%
+0047	recording OK	Critical sample variation found for expected sampling rate (0.279%):	    29620	   23.696s	   1134236	   23.630s	1253.496Hz	47866.138Hz	  -3172	  0.066s	0.2789%
+0048	recording OK	audio length OK	    13805	   11.044s	    530155	   11.045s	1249.899Hz	48003.894Hz	     43	  0.001s	0.0081%
+0049	recording OK	audio length OK	    13735	   10.988s	    527467	   10.989s	1249.898Hz	48003.913Hz	     43	  0.001s	0.0082%
+0050	recording OK	audio length OK	    13775	   11.020s	    529003	   11.021s	1249.898Hz	48003.902Hz	     43	  0.001s	0.0081%
+0051	recording OK	audio length OK	    13740	   10.992s	    527658	   10.993s	1249.901Hz	48003.821Hz	     42	  0.001s	0.0080%
+0052	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0053	recording OK	Critical sample variation found for expected sampling rate (0.092%):	    13755	   11.004s	    527707	   10.994s	1251.149Hz	47955.925Hz	   -485	  0.010s	0.0918%
+0054	recording OK	Critical sample variation found for expected sampling rate (0.092%):	    13755	   11.004s	    527707	   10.994s	1251.149Hz	47955.925Hz	   -485	  0.010s	0.0918%
+0055	recording OK	audio length OK	    38125	   30.500s	   1464118	   30.502s	1249.899Hz	48003.869Hz	    118	  0.002s	0.0081%
+0056	recording OK	audio length OK	     1945	    1.556s	     74694	    1.556s	1249.900Hz	48003.856Hz	      6	  0.000s	0.0080%
+0057	recording OK	audio length OK	     1710	    1.368s	     65669	    1.368s	1249.905Hz	48003.655Hz	      5	  0.000s	0.0076%
+0058	recording OK	audio length OK	   327665	  262.132s	  12583348	  262.153s	1249.899Hz	48003.861Hz	   1012	  0.021s	0.0080%
+0059	recording OK	Critical sample variation found for expected sampling rate (0.092%):	    13755	   11.004s	    527707	   10.994s	1251.149Hz	47955.925Hz	   -485	  0.010s	0.0918%
+0060	recording OK	audio length OK	    11200	    8.960s	    430114	    8.961s	1249.901Hz	48003.795Hz	     34	  0.001s	0.0079%
+0061	recording OK	audio length OK	    11250	    9.000s	    432035	    9.001s	1249.899Hz	48003.889Hz	     35	  0.001s	0.0081%
+0062	recording OK	Critical sample variation found for expected sampling rate (0.105%):	    11290	    9.032s	    433080	    9.023s	1251.316Hz	47949.513Hz	   -456	  0.009s	0.1052%
+0063	recording OK	Critical sample variation found for expected sampling rate (0.755%):	    11300	    9.040s	    430643	    8.972s	1259.512Hz	47637.500Hz	  -3277	  0.068s	0.7552%
+0064	recording OK	audio length OK	    11305	    9.044s	    434147	    9.045s	1249.899Hz	48003.870Hz	     35	  0.001s	0.0081%
+0065	recording OK	Critical sample variation found for expected sampling rate (0.048%):	    11235	    8.988s	    431219	    8.984s	1250.594Hz	47977.192Hz	   -205	  0.004s	0.0475%
+0066	recording OK	audio length OK	    11230	    8.984s	    431267	    8.985s	1249.899Hz	48003.896Hz	     35	  0.001s	0.0081%
+0067	recording OK	Critical sample variation found for expected sampling rate (0.628%):	    11210	    8.968s	    427762	    8.912s	1257.896Hz	47698.707Hz	  -2702	  0.056s	0.6277%
+0068	recording OK	audio length OK	    11250	    9.000s	    432035	    9.001s	1249.899Hz	48003.889Hz	     35	  0.001s	0.0081%
+0069	recording OK	audio length OK	    11255	    9.004s	    432227	    9.005s	1249.899Hz	48003.887Hz	     35	  0.001s	0.0081%
+0070	recording OK	Critical sample variation found for expected sampling rate (0.192%):	    11255	    9.004s	    431363	    8.987s	1252.402Hz	47907.930Hz	   -829	  0.017s	0.1918%
+0071	recording OK	Critical sample variation found for expected sampling rate (0.192%):	    11260	    9.008s	    431555	    8.991s	1252.401Hz	47907.971Hz	   -829	  0.017s	0.1917%
+0072	recording OK	audio length OK	    11245	    8.996s	    431842	    8.997s	1249.902Hz	48003.779Hz	     34	  0.001s	0.0079%
+0073	recording OK	audio length OK	    11275	    9.020s	    432995	    9.021s	1249.899Hz	48003.880Hz	     35	  0.001s	0.0081%
+0074	recording OK	audio length OK	    11275	    9.020s	    432995	    9.021s	1249.899Hz	48003.880Hz	     35	  0.001s	0.0081%
+0075	recording OK	audio length OK	    11270	    9.016s	    432803	    9.017s	1249.899Hz	48003.882Hz	     35	  0.001s	0.0081%
+0076	recording OK	audio length OK	    11245	    8.996s	    431843	    8.997s	1249.899Hz	48003.891Hz	     35	  0.001s	0.0081%
+0077	recording OK	audio length OK	    11250	    9.000s	    432035	    9.001s	1249.899Hz	48003.889Hz	     35	  0.001s	0.0081%
+0078	recording OK	Critical sample variation found for expected sampling rate (0.748%):	    11250	    9.000s	    428770	    8.933s	1259.416Hz	47641.111Hz	  -3230	  0.067s	0.7477%
+0079	recording OK	audio length OK	    11265	    9.012s	    432610	    9.013s	1249.902Hz	48003.773Hz	     34	  0.001s	0.0079%
+0080	recording OK	Critical sample variation found for expected sampling rate (0.070%):	    11245	    8.996s	    431507	    8.990s	1250.872Hz	47966.541Hz	   -301	  0.006s	0.0697%
+0081	recording OK	Critical sample variation found for expected sampling rate (0.703%):	    11250	    9.000s	    428963	    8.937s	1258.850Hz	47662.556Hz	  -3037	  0.063s	0.7030%
+0082	recording OK	audio length OK	    11275	    9.020s	    432995	    9.021s	1249.899Hz	48003.880Hz	     35	  0.001s	0.0081%
+0083	recording OK	audio length OK	    11295	    9.036s	    433763	    9.037s	1249.899Hz	48003.873Hz	     35	  0.001s	0.0081%
+0084	recording OK	Critical sample variation found for expected sampling rate (0.125%):	    11235	    8.988s	    430883	    8.977s	1251.569Hz	47939.809Hz	   -541	  0.011s	0.1254%
+0085	recording OK	Critical sample variation found for expected sampling rate (0.181%):	    11215	    8.972s	    429875	    8.956s	1252.271Hz	47912.951Hz	   -781	  0.016s	0.1814%
+0086	recording OK	audio length OK	    11240	    8.992s	    431650	    8.993s	1249.902Hz	48003.781Hz	     34	  0.001s	0.0079%
+0087	recording OK	Critical sample variation found for expected sampling rate (0.560%):	    11230	    8.984s	    428819	    8.934s	1257.034Hz	47731.411Hz	  -2413	  0.050s	0.5596%
+0088	recording OK	Critical sample variation found for expected sampling rate (0.204%):	    11230	    8.984s	    430354	    8.966s	1252.550Hz	47902.271Hz	   -878	  0.018s	0.2036%
+0089	recording OK	audio length OK	    11245	    8.996s	    431843	    8.997s	1249.899Hz	48003.891Hz	     35	  0.001s	0.0081%
+0090	recording OK	Critical sample variation found for expected sampling rate (0.856%):	    11280	    9.024s	    429443	    8.947s	1260.796Hz	47588.985Hz	  -3709	  0.077s	0.8563%
+0091	recording OK	Critical sample variation found for expected sampling rate (0.815%):	    11245	    8.996s	    428290	    8.923s	1260.268Hz	47608.937Hz	  -3518	  0.073s	0.8147%
+0092	recording OK	audio length OK	    11220	    8.976s	    430883	    8.977s	1249.898Hz	48003.899Hz	     35	  0.001s	0.0081%
+0093	recording OK	audio length OK	    11255	    9.004s	    432227	    9.005s	1249.899Hz	48003.887Hz	     35	  0.001s	0.0081%
+0094	recording OK	Critical sample variation found for expected sampling rate (0.826%):	    11240	    8.992s	    428051	    8.918s	1260.411Hz	47603.536Hz	  -3565	  0.074s	0.8260%
+0095	recording OK	audio length OK	    11250	    9.000s	    432034	    9.001s	1249.902Hz	48003.778Hz	     34	  0.001s	0.0079%
+0096	recording OK	audio length OK	    11255	    9.004s	    432227	    9.005s	1249.899Hz	48003.887Hz	     35	  0.001s	0.0081%
+0097	recording OK	Critical sample variation found for expected sampling rate (0.036%):	    11215	    8.972s	    430499	    8.969s	1250.456Hz	47982.501Hz	   -157	  0.003s	0.0365%
+0098	recording OK	audio length OK	    11235	    8.988s	    431458	    8.989s	1249.901Hz	48003.783Hz	     34	  0.001s	0.0079%
+0099	recording OK	audio length OK	    11210	    8.968s	    430498	    8.969s	1249.901Hz	48003.791Hz	     34	  0.001s	0.0079%
+0100	recording OK	audio length OK	    11230	    8.984s	    431267	    8.985s	1249.899Hz	48003.896Hz	     35	  0.001s	0.0081%
+0101	recording OK	Critical sample variation found for expected sampling rate (0.482%):	    11220	    8.976s	    428771	    8.933s	1256.055Hz	47768.605Hz	  -2077	  0.043s	0.4821%
+0102	recording OK	Critical sample variation found for expected sampling rate (0.081%):	    11220	    8.976s	    430498	    8.969s	1251.016Hz	47961.007Hz	   -350	  0.007s	0.0812%
+0103	recording OK	audio length OK	    11215	    8.972s	    430691	    8.973s	1249.898Hz	48003.901Hz	     35	  0.001s	0.0081%
+0104	recording OK	Critical sample variation found for expected sampling rate (4.852%):	    11230	    8.984s	    410310	    8.548s	1313.738Hz	45671.193Hz	 -20922	  0.436s	4.8517%
+0105	recording OK	Critical sample variation found for expected sampling rate (0.549%):	    11225	    8.980s	    428675	    8.931s	1256.896Hz	47736.637Hz	  -2365	  0.049s	0.5487%
+0106	recording OK	audio length OK	    11255	    9.004s	    432227	    9.005s	1249.899Hz	48003.887Hz	     35	  0.001s	0.0081%
+0107	recording OK	Critical sample variation found for expected sampling rate (0.692%):	    11245	    8.996s	    428819	    8.934s	1258.713Hz	47667.741Hz	  -2989	  0.062s	0.6922%
+0108	recording OK	audio length OK	    11220	    8.976s	    430882	    8.977s	1249.901Hz	48003.788Hz	     34	  0.001s	0.0079%
+0109	recording OK	Critical sample variation found for expected sampling rate (0.014%):	    11280	    9.024s	    433091	    9.023s	1250.176Hz	47993.240Hz	    -61	  0.001s	0.0141%
+0110	recording OK	audio length OK	    13750	   11.000s	    528042	   11.001s	1249.901Hz	48003.818Hz	     42	  0.001s	0.0080%
+0111	recording OK	audio length OK	    13770	   11.016s	    528810	   11.017s	1249.901Hz	48003.813Hz	     42	  0.001s	0.0079%
+0112	recording OK	audio length OK	    13750	   11.000s	    528042	   11.001s	1249.901Hz	48003.818Hz	     42	  0.001s	0.0080%
+0113	recording OK	audio length OK	    13775	   11.020s	    529003	   11.021s	1249.898Hz	48003.902Hz	     43	  0.001s	0.0081%
+0114	recording OK	audio length OK	    13740	   10.992s	    527658	   10.993s	1249.901Hz	48003.821Hz	     42	  0.001s	0.0080%
+0115	recording OK	audio length OK	    13755	   11.004s	    528234	   11.005s	1249.901Hz	48003.817Hz	     42	  0.001s	0.0080%
+0116	recording OK	Critical sample variation found for expected sampling rate (0.101%):	    13735	   10.988s	    526890	   10.977s	1251.267Hz	47951.402Hz	   -534	  0.011s	0.1012%
+0117	recording OK	Critical sample variation found for expected sampling rate (0.400%):	    13775	   11.020s	    526843	   10.976s	1255.023Hz	47807.895Hz	  -2117	  0.044s	0.4002%
+0118	recording OK	Critical sample variation found for expected sampling rate (0.138%):	    13740	   10.992s	    526890	   10.977s	1251.722Hz	47933.952Hz	   -726	  0.015s	0.1376%
+0119	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0120	recording OK	Critical sample variation found for expected sampling rate (0.363%):	    13805	   11.044s	    528187	   11.004s	1254.556Hz	47825.697Hz	  -1925	  0.040s	0.3631%
+0121	recording OK	Critical sample variation found for expected sampling rate (0.692%):	    13740	   10.992s	    523963	   10.916s	1258.715Hz	47667.667Hz	  -3653	  0.076s	0.6924%
+0122	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0123	recording OK	audio length OK	    13755	   11.004s	    528234	   11.005s	1249.901Hz	48003.817Hz	     42	  0.001s	0.0080%
+0124	recording OK	Critical sample variation found for expected sampling rate (0.373%):	    13760	   11.008s	    526411	   10.967s	1254.685Hz	47820.767Hz	  -1973	  0.041s	0.3734%
+0125	recording OK	audio length OK	    13770	   11.016s	    528810	   11.017s	1249.901Hz	48003.813Hz	     42	  0.001s	0.0079%
+0126	recording OK	Critical sample variation found for expected sampling rate (0.110%):	    13740	   10.992s	    527035	   10.980s	1251.378Hz	47947.143Hz	   -581	  0.012s	0.1101%
+0127	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0128	recording OK	audio length OK	    13715	   10.972s	    526698	   10.973s	1249.900Hz	48003.828Hz	     42	  0.001s	0.0080%
+0129	recording OK	Critical sample variation found for expected sampling rate (0.629%):	    13725	   10.980s	    523723	   10.911s	1257.917Hz	47697.905Hz	  -3317	  0.069s	0.6294%
+0130	recording OK	audio length OK	    13715	   10.972s	    526698	   10.973s	1249.900Hz	48003.828Hz	     42	  0.001s	0.0080%
+0131	recording OK	Critical sample variation found for expected sampling rate (0.110%):	    13710	   10.968s	    525883	   10.956s	1251.381Hz	47947.028Hz	   -581	  0.012s	0.1104%
+0132	recording OK	audio length OK	    13730	   10.984s	    527275	   10.985s	1249.898Hz	48003.915Hz	     43	  0.001s	0.0082%
+0133	recording OK	Critical sample variation found for expected sampling rate (0.684%):	    13725	   10.980s	    523434	   10.905s	1258.611Hz	47671.585Hz	  -3606	  0.075s	0.6842%
+0134	recording OK	Critical sample variation found for expected sampling rate (0.128%):	    13780	   11.024s	    528474	   11.010s	1251.604Hz	47938.498Hz	   -678	  0.014s	0.1281%
+0135	recording OK	Critical sample variation found for expected sampling rate (0.537%):	    13765	   11.012s	    525739	   10.953s	1256.745Hz	47742.372Hz	  -2837	  0.059s	0.5367%
+0136	recording OK	audio length OK	    13770	   11.016s	    528811	   11.017s	1249.898Hz	48003.903Hz	     43	  0.001s	0.0081%
+0137	recording OK	audio length OK	    13735	   10.988s	    527466	   10.989s	1249.900Hz	48003.822Hz	     42	  0.001s	0.0080%
+0138	recording OK	Critical sample variation found for expected sampling rate (0.483%):	    13735	   10.988s	    524875	   10.935s	1256.070Hz	47768.020Hz	  -2549	  0.053s	0.4833%
+0139	recording OK	audio length OK	    13765	   11.012s	    528619	   11.013s	1249.898Hz	48003.905Hz	     43	  0.001s	0.0081%
+0140	recording OK	Critical sample variation found for expected sampling rate (0.392%):	    15625	   12.500s	    597648	   12.451s	1254.919Hz	47811.840Hz	  -2352	  0.049s	0.3920%
+0141	recording OK	Critical sample variation found for expected sampling rate (0.531%):	    15065	   12.052s	    575423	   11.988s	1256.676Hz	47745.022Hz	  -3073	  0.064s	0.5312%
+0142	recording OK	audio length OK	     1775	    1.420s	     68165	    1.420s	1249.908Hz	48003.521Hz	      5	  0.000s	0.0073%
+0143	recording OK	Critical sample variation found for expected sampling rate (9.481%):	     1765	    1.412s	     61350	    1.278s	1380.929Hz	43449.008Hz	  -6426	  0.134s	9.4812%
+0144	recording OK	Critical sample variation found for expected sampling rate (5.298%):	     1720	    1.376s	     62549	    1.303s	1319.925Hz	45457.122Hz	  -3499	  0.073s	5.2977%
+0145	recording OK	Critical sample variation found for expected sampling rate (5.047%):	     1805	    1.444s	     65814	    1.371s	1316.437Hz	45577.562Hz	  -3498	  0.073s	5.0467%
+0146	recording OK	audio length OK	     8635	    6.908s	    331610	    6.909s	1249.902Hz	48003.764Hz	     26	  0.001s	0.0078%
+0147	recording OK	audio length OK	     1780	    1.424s	     68358	    1.424s	1249.890Hz	48004.213Hz	      6	  0.000s	0.0088%
+0148	recording OK	audio length OK	     1665	    1.332s	     63941	    1.332s	1249.902Hz	48003.754Hz	      5	  0.000s	0.0078%
+0149	recording OK	Critical sample variation found for expected sampling rate (6.482%):	     1695	    1.356s	     60869	    1.268s	1336.641Hz	44888.643Hz	  -4219	  0.088s	6.4820%
+0150	recording OK	Critical sample variation found for expected sampling rate (0.555%):	     1775	    1.420s	     67782	    1.412s	1256.971Hz	47733.803Hz	   -378	  0.008s	0.5546%
+0151	recording OK	audio length OK	   224485	  179.588s	   8619718	  179.577s	1250.073Hz	47997.182Hz	   -506	  0.011s	0.0059%
+0152	recording OK	audio length OK	     1640	    1.312s	     62981	    1.312s	1249.901Hz	48003.811Hz	      5	  0.000s	0.0079%
+0153	recording OK	Critical sample variation found for expected sampling rate (3.307%):	     1885	    1.508s	     69990	    1.458s	1292.756Hz	46412.467Hz	  -2394	  0.050s	3.3074%
+0154	recording OK	audio length OK	     1840	    1.472s	     70661	    1.472s	1249.912Hz	48003.397Hz	      5	  0.000s	0.0071%
+0155	recording OK	audio length OK	     1845	    1.476s	     70853	    1.476s	1249.912Hz	48003.388Hz	      5	  0.000s	0.0071%
+0156	recording OK	Critical sample variation found for expected sampling rate (0.175%):	     9550	    7.640s	    366078	    7.627s	1252.192Hz	47915.969Hz	   -642	  0.013s	0.1751%
+0157	recording OK	audio length OK	     1730	    1.384s	     66437	    1.384s	1249.906Hz	48003.613Hz	      5	  0.000s	0.0075%
+0158	recording OK	Critical sample variation found for expected sampling rate (4.726%):	     1690	    1.352s	     61829	    1.288s	1312.006Hz	45731.509Hz	  -3067	  0.064s	4.7260%
+0159	recording OK	audio length OK	    92310	   73.848s	   3544989	   73.854s	1249.900Hz	48003.859Hz	    285	  0.006s	0.0080%
+0160	recording OK	audio length OK	     1630	    1.304s	     62597	    1.304s	1249.900Hz	48003.834Hz	      5	  0.000s	0.0080%
+0161	recording OK	audio length OK	     1780	    1.424s	     68358	    1.424s	1249.890Hz	48004.213Hz	      6	  0.000s	0.0088%
+0162	recording OK	audio length OK	   177255	  141.804s	   6806371	  141.799s	1250.041Hz	47998.442Hz	   -221	  0.005s	0.0032%
+0163	recording OK	audio length OK	     4050	    3.240s	    155532	    3.240s	1249.904Hz	48003.704Hz	     12	  0.000s	0.0077%
+0164	recording OK	audio length OK	     6655	    5.324s	    255573	    5.324s	1249.897Hz	48003.944Hz	     21	  0.000s	0.0082%
+0165	recording OK	Critical sample variation found for expected sampling rate (3.440%):	     4495	    3.596s	    166670	    3.472s	1294.534Hz	46348.721Hz	  -5938	  0.124s	3.4402%
+0166	recording OK	Critical sample variation found for expected sampling rate (3.055%):	     1795	    1.436s	     66822	    1.392s	1289.396Hz	46533.426Hz	  -2106	  0.044s	3.0554%
+0167	recording OK	Critical sample variation found for expected sampling rate (2.941%):	     1695	    1.356s	     63174	    1.316s	1287.872Hz	46588.496Hz	  -1914	  0.040s	2.9406%
+0168	recording OK	Critical sample variation found for expected sampling rate (3.233%):	     1735	    1.388s	     64470	    1.343s	1291.764Hz	46448.127Hz	  -2154	  0.045s	3.2331%
+0169	recording OK	Critical sample variation found for expected sampling rate (0.145%):	     1675	    1.340s	     64227	    1.338s	1251.810Hz	47930.597Hz	    -93	  0.002s	0.1446%
+0170	recording OK	audio length OK	     1655	    1.324s	     63557	    1.324s	1249.902Hz	48003.776Hz	      5	  0.000s	0.0079%
+0171	recording OK	Critical sample variation found for expected sampling rate (5.585%):	     1810	    1.448s	     65622	    1.367s	1323.946Hz	45319.061Hz	  -3882	  0.081s	5.5853%
+0172	recording OK	audio length OK	     1770	    1.416s	     67974	    1.416s	1249.890Hz	48004.237Hz	      6	  0.000s	0.0088%
+0173	recording OK	Critical sample variation found for expected sampling rate (4.205%):	     1750	    1.400s	     64374	    1.341s	1304.875Hz	45981.429Hz	  -2826	  0.059s	4.2054%
+0174	recording OK	audio length OK	     1665	    1.332s	     63941	    1.332s	1249.902Hz	48003.754Hz	      5	  0.000s	0.0078%
+0175	recording OK	Critical sample variation found for expected sampling rate (1.199%):	     5590	    4.472s	    212082	    4.418s	1265.171Hz	47424.419Hz	  -2574	  0.054s	1.1991%
+0176	recording OK	audio length OK	     1855	    1.484s	     71238	    1.484s	1249.895Hz	48004.043Hz	      6	  0.000s	0.0084%
+0177	recording OK	audio length OK	    22275	   17.820s	    855429	   17.821s	1249.899Hz	48003.872Hz	     69	  0.001s	0.0081%
+0178	recording OK	Critical sample variation found for expected sampling rate (10.018%):	     1895	    1.516s	     65478	    1.364s	1389.169Hz	43191.293Hz	  -7290	  0.152s	10.0181%
+0179	recording OK	audio length OK	     1660	    1.328s	     63749	    1.328s	1249.902Hz	48003.765Hz	      5	  0.000s	0.0078%
+0180	recording OK	audio length OK	     1705	    1.364s	     65477	    1.364s	1249.905Hz	48003.666Hz	      5	  0.000s	0.0076%
+0181	recording OK	Critical sample variation found for expected sampling rate (0.878%):	     1690	    1.352s	     64326	    1.340s	1261.076Hz	47578.402Hz	   -570	  0.012s	0.8783%
+0182	recording OK	Critical sample variation found for expected sampling rate (3.725%):	     1775	    1.420s	     65621	    1.367s	1298.365Hz	46211.972Hz	  -2539	  0.053s	3.7251%
+0183	recording OK	audio length OK	     9245	    7.396s	    354989	    7.396s	1250.067Hz	47997.431Hz	    -19	  0.000s	0.0054%
+0184	recording OK	Critical sample variation found for expected sampling rate (7.456%):	     1775	    1.420s	     63078	    1.314s	1350.709Hz	44421.127Hz	  -5082	  0.106s	7.4560%
+0185	recording OK	audio length OK	     1615	    1.292s	     62021	    1.292s	1249.899Hz	48003.870Hz	      5	  0.000s	0.0081%
+0186	recording OK	Critical sample variation found for expected sampling rate (3.732%):	     1805	    1.444s	     66725	    1.390s	1298.464Hz	46208.449Hz	  -2587	  0.054s	3.7324%
+0187	recording OK	Critical sample variation found for expected sampling rate (3.622%):	     2445	    1.956s	     90487	    1.885s	1296.982Hz	46261.247Hz	  -3401	  0.071s	3.6224%
+0188	recording OK	Critical sample variation found for expected sampling rate (3.921%):	     1845	    1.476s	     68070	    1.418s	1301.014Hz	46117.886Hz	  -2778	  0.058s	3.9211%
+0189	recording OK	audio length OK	     1760	    1.408s	     67589	    1.408s	1249.908Hz	48003.551Hz	      5	  0.000s	0.0074%
+0190	recording OK	Critical sample variation found for expected sampling rate (4.810%):	     1920	    1.536s	     70182	    1.462s	1313.157Hz	45691.406Hz	  -3546	  0.074s	4.8096%
+0191	recording OK	Critical sample variation found for expected sampling rate (0.220%):	     9850	    7.880s	    377407	    7.863s	1252.759Hz	47894.289Hz	   -833	  0.017s	0.2202%
+0192	recording OK	Critical sample variation found for expected sampling rate (4.712%):	     1880	    1.504s	     68790	    1.433s	1311.819Hz	45738.032Hz	  -3402	  0.071s	4.7124%
+0193	recording OK	Critical sample variation found for expected sampling rate (5.125%):	     1875	    1.500s	     68310	    1.423s	1317.523Hz	45540.000Hz	  -3690	  0.077s	5.1250%
+0194	recording OK	Critical sample variation found for expected sampling rate (3.422%):	     1895	    1.516s	     70278	    1.464s	1294.288Hz	46357.520Hz	  -2490	  0.052s	3.4218%
+0195	recording OK	Critical sample variation found for expected sampling rate (4.420%):	     1665	    1.332s	     61110	    1.273s	1307.806Hz	45878.378Hz	  -2826	  0.059s	4.4200%
+0196	recording OK	Critical sample variation found for expected sampling rate (4.568%):	     1830	    1.464s	     67062	    1.397s	1309.833Hz	45807.377Hz	  -3210	  0.067s	4.5680%
+0197	recording OK	Critical sample variation found for expected sampling rate (2.860%):	     2310	    1.848s	     86167	    1.795s	1286.804Hz	46627.165Hz	  -2537	  0.053s	2.8601%
+0198	recording OK	Critical sample variation found for expected sampling rate (2.069%):	     3070	    2.456s	    115449	    2.405s	1276.408Hz	47006.922Hz	  -2439	  0.051s	2.0689%
+0199	recording OK	audio length OK	     1650	    1.320s	     63365	    1.320s	1249.901Hz	48003.788Hz	      5	  0.000s	0.0079%
+0200	recording OK	Critical sample variation found for expected sampling rate (0.490%):	     1755	    1.404s	     67062	    1.397s	1256.151Hz	47764.957Hz	   -330	  0.007s	0.4897%
+0201	recording OK	Critical sample variation found for expected sampling rate (1.400%):	     1685	    1.348s	     63798	    1.329s	1267.751Hz	47327.893Hz	   -906	  0.019s	1.4002%
+0202	recording OK	Critical sample variation found for expected sampling rate (2.159%):	     3230	    2.584s	    121354	    2.528s	1277.585Hz	46963.622Hz	  -2678	  0.056s	2.1591%
+0203	recording OK	audio length OK	     1735	    1.388s	     66629	    1.388s	1249.906Hz	48003.602Hz	      5	  0.000s	0.0075%
+0204	recording OK	audio length OK	     1630	    1.304s	     62598	    1.304s	1249.880Hz	48004.601Hz	      6	  0.000s	0.0096%
+0205	recording OK	Critical sample variation found for expected sampling rate (1.057%):	     7630	    6.104s	    289896	    6.039s	1263.350Hz	47492.792Hz	  -3096	  0.065s	1.0567%
+0206	recording OK	Critical sample variation found for expected sampling rate (3.844%):	     1720	    1.376s	     63509	    1.323s	1299.973Hz	46154.797Hz	  -2539	  0.053s	3.8442%
+0207	recording OK	audio length OK	     1765	    1.412s	     67781	    1.412s	1249.908Hz	48003.541Hz	      5	  0.000s	0.0074%
+0208	recording OK	audio length OK	     1690	    1.352s	     64902	    1.352s	1249.884Hz	48004.438Hz	      6	  0.000s	0.0092%
+0209	recording OK	audio length OK	     1595	    1.276s	     61253	    1.276s	1249.898Hz	48003.918Hz	      5	  0.000s	0.0082%
+0210	recording OK	audio length OK	     1710	    1.368s	     65669	    1.368s	1249.905Hz	48003.655Hz	      5	  0.000s	0.0076%
+0211	recording OK	Critical sample variation found for expected sampling rate (4.066%):	     1780	    1.424s	     65573	    1.366s	1302.975Hz	46048.455Hz	  -2779	  0.058s	4.0657%
+0212	recording OK	audio length OK	     1695	    1.356s	     65093	    1.356s	1249.904Hz	48003.687Hz	      5	  0.000s	0.0077%
+0213	recording OK	Critical sample variation found for expected sampling rate (9.386%):	     1730	    1.384s	     60197	    1.254s	1379.471Hz	43494.942Hz	  -6235	  0.130s	9.3855%
+0214	recording OK	Critical sample variation found for expected sampling rate (3.771%):	     2150	    1.720s	     79447	    1.655s	1298.979Hz	46190.116Hz	  -3113	  0.065s	3.7706%
+0215	recording OK	Critical sample variation found for expected sampling rate (5.301%):	     1695	    1.356s	     61638	    1.284s	1319.965Hz	45455.752Hz	  -3450	  0.072s	5.3005%
+0216	recording OK	Critical sample variation found for expected sampling rate (0.689%):	     2510	    2.008s	     95720	    1.994s	1258.671Hz	47669.323Hz	   -664	  0.014s	0.6889%
+0217	recording OK	audio length OK	     1760	    1.408s	     67589	    1.408s	1249.908Hz	48003.551Hz	      5	  0.000s	0.0074%
+0218	recording OK	Critical sample variation found for expected sampling rate (1.546%):	     1770	    1.416s	     66917	    1.394s	1269.633Hz	47257.768Hz	  -1051	  0.022s	1.5463%
+0219	recording OK	Critical sample variation found for expected sampling rate (0.401%):	    13440	   10.752s	    514026	   10.709s	1255.034Hz	47807.478Hz	  -2070	  0.043s	0.4011%
+0220	recording OK	Critical sample variation found for expected sampling rate (0.407%):	    16555	   13.244s	    633123	   13.190s	1255.112Hz	47804.515Hz	  -2589	  0.054s	0.4073%
+0221	recording OK	Critical sample variation found for expected sampling rate (1.016%):	     1710	    1.368s	     64997	    1.354s	1262.828Hz	47512.427Hz	   -667	  0.014s	1.0158%
+0222	recording OK	Critical sample variation found for expected sampling rate (0.297%):	     1640	    1.312s	     62789	    1.308s	1253.723Hz	47857.470Hz	   -187	  0.004s	0.2969%
+0223	recording OK	Critical sample variation found for expected sampling rate (0.885%):	     2520	    2.016s	     95912	    1.998s	1261.156Hz	47575.397Hz	   -856	  0.018s	0.8846%
+0224	recording OK	audio length OK	     1830	    1.464s	     70277	    1.464s	1249.911Hz	48003.415Hz	      5	  0.000s	0.0071%
+0225	recording OK	Critical sample variation found for expected sampling rate (5.256%):	     1805	    1.444s	     65669	    1.368s	1319.344Hz	45477.147Hz	  -3643	  0.076s	5.2559%
+0226	recording OK	Critical sample variation found for expected sampling rate (6.447%):	     1820	    1.456s	     65382	    1.362s	1336.148Hz	44905.220Hz	  -4506	  0.094s	6.4475%
+0227	recording OK	Critical sample variation found for expected sampling rate (4.194%):	     1725	    1.380s	     63462	    1.322s	1304.718Hz	45986.957Hz	  -2778	  0.058s	4.1938%
+0228	recording OK	audio length OK	     1720	    1.376s	     66053	    1.376s	1249.905Hz	48003.634Hz	      5	  0.000s	0.0076%
+0229	recording OK	audio length OK	     1690	    1.352s	     64901	    1.352s	1249.904Hz	48003.698Hz	      5	  0.000s	0.0077%
+0230	recording OK	audio length OK	     1720	    1.376s	     66054	    1.376s	1249.886Hz	48004.360Hz	      6	  0.000s	0.0091%
+0231	recording OK	audio length OK	     1700	    1.360s	     65286	    1.360s	1249.885Hz	48004.412Hz	      6	  0.000s	0.0092%
+0232	recording OK	Critical sample variation found for expected sampling rate (4.330%):	     1815	    1.452s	     66678	    1.389s	1306.578Hz	45921.488Hz	  -3018	  0.063s	4.3302%
+0233	recording OK	Critical sample variation found for expected sampling rate (0.179%):	     3340	    2.672s	    128027	    2.667s	1252.236Hz	47914.296Hz	   -229	  0.005s	0.1785%
+0234	recording OK	audio length OK	    54230	   43.384s	   2082600	   43.388s	1249.899Hz	48003.872Hz	    168	  0.003s	0.0081%
+0235	recording OK	audio length OK	     1785	    1.428s	     68549	    1.428s	1249.909Hz	48003.501Hz	      5	  0.000s	0.0073%
+0236	recording OK	Critical sample variation found for expected sampling rate (5.022%):	     1715	    1.372s	     62549	    1.303s	1316.088Hz	45589.650Hz	  -3307	  0.069s	5.0216%
+0237	recording OK	Critical sample variation found for expected sampling rate (7.628%):	     1735	    1.388s	     61542	    1.282s	1353.222Hz	44338.617Hz	  -5082	  0.106s	7.6279%
+0238	recording OK	Critical sample variation found for expected sampling rate (5.034%):	     1810	    1.448s	     66005	    1.375s	1316.264Hz	45583.564Hz	  -3499	  0.073s	5.0342%
+0239	recording OK	Critical sample variation found for expected sampling rate (11.085%):	     3635	    2.908s	    124111	    2.586s	1405.838Hz	42679.161Hz	 -15473	  0.322s	11.0851%
+0240	recording OK	Critical sample variation found for expected sampling rate (2.501%):	     3040	    2.432s	    113817	    2.371s	1282.058Hz	46799.753Hz	  -2919	  0.061s	2.5005%
+0241	recording OK	audio length OK	     1770	    1.416s	     67973	    1.416s	1249.908Hz	48003.531Hz	      5	  0.000s	0.0074%
+0242	recording OK	Critical sample variation found for expected sampling rate (3.255%):	     2260	    1.808s	     83959	    1.749s	1292.059Hz	46437.500Hz	  -2825	  0.059s	3.2552%
+0243	recording OK	Critical sample variation found for expected sampling rate (0.491%):	     1755	    1.404s	     67061	    1.397s	1256.170Hz	47764.245Hz	   -331	  0.007s	0.4912%
+0244	recording OK	audio length OK	     2930	    2.344s	    112522	    2.344s	1249.889Hz	48004.266Hz	     10	  0.000s	0.0089%
+0245	recording OK	audio length OK	     1695	    1.356s	     65093	    1.356s	1249.904Hz	48003.687Hz	      5	  0.000s	0.0077%
+0246	recording OK	audio length OK	     1645	    1.316s	     63173	    1.316s	1249.901Hz	48003.799Hz	      5	  0.000s	0.0079%
+0247	recording OK	audio length OK	     1620	    1.296s	     62213	    1.296s	1249.900Hz	48003.858Hz	      5	  0.000s	0.0080%
+0248	recording OK	audio length OK	    19110	   15.288s	    733883	   15.289s	1249.900Hz	48003.859Hz	     59	  0.001s	0.0080%
+0249	recording OK	Critical sample variation found for expected sampling rate (2.237%):	     4400	    3.520s	    165181	    3.441s	1278.597Hz	46926.420Hz	  -3779	  0.079s	2.2366%
+0250	recording OK	Critical sample variation found for expected sampling rate (4.680%):	     1680	    1.344s	     61493	    1.281s	1311.369Hz	45753.720Hz	  -3019	  0.063s	4.6797%
+0251	recording OK	Critical sample variation found for expected sampling rate (3.007%):	     1700	    1.360s	     63317	    1.319s	1288.753Hz	46556.618Hz	  -1963	  0.041s	3.0070%
+0252	recording OK	audio length OK	     1645	    1.316s	     63173	    1.316s	1249.901Hz	48003.799Hz	      5	  0.000s	0.0079%
+0253	recording OK	audio length OK	     2855	    2.284s	    109641	    2.284s	1249.897Hz	48003.940Hz	      9	  0.000s	0.0082%
+0254	recording OK	Critical sample variation found for expected sampling rate (5.562%):	     1795	    1.436s	     65094	    1.356s	1323.624Hz	45330.084Hz	  -3834	  0.080s	5.5623%
+0255	recording OK	Critical sample variation found for expected sampling rate (3.947%):	     1770	    1.416s	     65285	    1.360s	1301.371Hz	46105.226Hz	  -2683	  0.056s	3.9474%
+0256	recording OK	audio length OK	     1725	    1.380s	     66245	    1.380s	1249.906Hz	48003.623Hz	      5	  0.000s	0.0075%
+0257	recording OK	Critical sample variation found for expected sampling rate (0.772%):	     1760	    1.408s	     67062	    1.397s	1259.730Hz	47629.261Hz	   -522	  0.011s	0.7724%
+0258	recording OK	Critical sample variation found for expected sampling rate (0.068%):	     1635	    1.308s	     62741	    1.307s	1250.857Hz	47967.125Hz	    -43	  0.001s	0.0685%
+0259	recording OK	audio length OK	     1745	    1.396s	     67014	    1.396s	1249.888Hz	48004.298Hz	      6	  0.000s	0.0090%
+0260	recording OK	audio length OK	     1735	    1.388s	     66629	    1.388s	1249.906Hz	48003.602Hz	      5	  0.000s	0.0075%
+0261	recording OK	Critical sample variation found for expected sampling rate (4.860%):	     1695	    1.356s	     61925	    1.290s	1313.847Hz	45667.404Hz	  -3163	  0.066s	4.8596%
+0262	recording OK	Critical sample variation found for expected sampling rate (0.758%):	     9950	    7.960s	    379183	    7.900s	1259.550Hz	47636.055Hz	  -2897	  0.060s	0.7582%
+0263	recording OK	Critical sample variation found for expected sampling rate (2.367%):	     3685	    2.948s	    138155	    2.878s	1280.301Hz	46863.976Hz	  -3349	  0.070s	2.3667%
+0264	recording OK	Critical sample variation found for expected sampling rate (3.282%):	     1710	    1.368s	     63509	    1.323s	1292.415Hz	46424.708Hz	  -2155	  0.045s	3.2819%
+0265	recording OK	Critical sample variation found for expected sampling rate (12.521%):	     2505	    2.004s	     84148	    1.753s	1428.911Hz	41990.020Hz	 -12044	  0.251s	12.5208%
+0266	recording OK	Critical sample variation found for expected sampling rate (8.545%):	     1710	    1.368s	     60053	    1.251s	1366.793Hz	43898.392Hz	  -5611	  0.117s	8.5450%
+0267	recording OK	Critical sample variation found for expected sampling rate (0.605%):	     1835	    1.468s	     70038	    1.459s	1257.603Hz	47709.809Hz	   -426	  0.009s	0.6046%
+0268	recording OK	audio length OK	    12830	   10.264s	    492711	   10.265s	1249.901Hz	48003.800Hz	     39	  0.001s	0.0079%
+0269	recording OK	audio length OK	     1760	    1.408s	     67590	    1.408s	1249.889Hz	48004.261Hz	      6	  0.000s	0.0089%
+0270	recording OK	Critical sample variation found for expected sampling rate (4.433%):	     1830	    1.464s	     67157	    1.399s	1307.980Hz	45872.268Hz	  -3115	  0.065s	4.4328%
+0271	recording OK	Critical sample variation found for expected sampling rate (4.314%):	     1735	    1.388s	     63750	    1.328s	1306.353Hz	45929.395Hz	  -2874	  0.060s	4.3138%
+0272	recording OK	Critical sample variation found for expected sampling rate (4.158%):	     1800	    1.440s	     66246	    1.380s	1304.230Hz	46004.167Hz	  -2874	  0.060s	4.1580%
+0273	recording OK	audio length OK	     1650	    1.320s	     63365	    1.320s	1249.901Hz	48003.788Hz	      5	  0.000s	0.0079%
+0274	recording OK	audio length OK	     1735	    1.388s	     66629	    1.388s	1249.906Hz	48003.602Hz	      5	  0.000s	0.0075%
+0275	recording OK	Critical sample variation found for expected sampling rate (1.294%):	     1825	    1.460s	     69173	    1.441s	1266.390Hz	47378.767Hz	   -907	  0.019s	1.2942%
+0276	recording OK	Critical sample variation found for expected sampling rate (1.636%):	     5095	    4.076s	    192448	    4.009s	1270.785Hz	47214.917Hz	  -3200	  0.067s	1.6356%
+0277	recording OK	audio length OK	     1765	    1.412s	     67781	    1.412s	1249.908Hz	48003.541Hz	      5	  0.000s	0.0074%
+0278	recording OK	audio length OK	     1670	    1.336s	     64134	    1.336s	1249.883Hz	48004.491Hz	      6	  0.000s	0.0094%
+0279	recording OK	audio length OK	     2005	    1.604s	     76998	    1.604s	1249.903Hz	48003.741Hz	      6	  0.000s	0.0078%
+0280	recording OK	Critical sample variation found for expected sampling rate (3.894%):	     1730	    1.384s	     63845	    1.330s	1300.650Hz	46130.780Hz	  -2587	  0.054s	3.8942%
+0281	recording OK	audio length OK	     1610	    1.288s	     61829	    1.288s	1249.899Hz	48003.882Hz	      5	  0.000s	0.0081%
+0282	recording OK	Critical sample variation found for expected sampling rate (10.248%):	     1755	    1.404s	     60486	    1.260s	1392.719Hz	43081.197Hz	  -6906	  0.144s	10.2475%
+0283	recording OK	Critical sample variation found for expected sampling rate (2.903%):	     3650	    2.920s	    136091	    2.835s	1287.374Hz	46606.507Hz	  -4069	  0.085s	2.9031%
+0284	recording OK	Critical sample variation found for expected sampling rate (0.857%):	     2600	    2.080s	     98984	    2.062s	1260.810Hz	47588.462Hz	   -856	  0.018s	0.8574%
+0285	recording OK	Critical sample variation found for expected sampling rate (4.821%):	     1760	    1.408s	     64326	    1.340s	1313.310Hz	45686.080Hz	  -3258	  0.068s	4.8207%
+0286	recording OK	Critical sample variation found for expected sampling rate (9.293%):	     1680	    1.344s	     58517	    1.219s	1378.061Hz	43539.435Hz	  -5995	  0.125s	9.2928%
+0287	recording OK	Critical sample variation found for expected sampling rate (4.844%):	     1700	    1.360s	     62118	    1.294s	1313.629Hz	45675.000Hz	  -3162	  0.066s	4.8437%
+0288	recording OK	Critical sample variation found for expected sampling rate (9.754%):	     1780	    1.424s	     61685	    1.285s	1385.102Hz	43318.118Hz	  -6667	  0.139s	9.7539%
+0289	recording OK	audio length OK	     1655	    1.324s	     63557	    1.324s	1249.902Hz	48003.776Hz	      5	  0.000s	0.0079%
+0290	recording OK	audio length OK	    10655	    8.524s	    409185	    8.525s	1249.899Hz	48003.871Hz	     33	  0.001s	0.0081%
+0291	recording OK	Critical sample variation found for expected sampling rate (5.654%):	     1810	    1.448s	     65574	    1.366s	1324.915Hz	45285.912Hz	  -3930	  0.082s	5.6544%
+0292	recording OK	Critical sample variation found for expected sampling rate (4.689%):	     1730	    1.384s	     63317	    1.319s	1311.496Hz	45749.277Hz	  -3115	  0.065s	4.6890%
+0293	recording OK	Critical sample variation found for expected sampling rate (0.301%):	     1620	    1.296s	     62021	    1.292s	1253.769Hz	47855.710Hz	   -187	  0.004s	0.3006%
+0294	recording OK	audio length OK	     2745	    2.196s	    105416	    2.196s	1249.905Hz	48003.643Hz	      8	  0.000s	0.0076%
+0295	recording OK	Critical sample variation found for expected sampling rate (5.005%):	     1770	    1.416s	     64566	    1.345s	1315.863Hz	45597.458Hz	  -3402	  0.071s	5.0053%
+0296	recording OK	Critical sample variation found for expected sampling rate (0.284%):	     1715	    1.372s	     65669	    1.368s	1253.560Hz	47863.703Hz	   -187	  0.004s	0.2840%
+0297	recording OK	Critical sample variation found for expected sampling rate (5.073%):	     1845	    1.476s	     67254	    1.401s	1316.799Hz	45565.041Hz	  -3594	  0.075s	5.0728%
+0298	recording OK	audio length OK	     1665	    1.332s	     63941	    1.332s	1249.902Hz	48003.754Hz	      5	  0.000s	0.0078%
+0299	recording OK	Critical sample variation found for expected sampling rate (4.101%):	     1795	    1.436s	     66101	    1.377s	1303.460Hz	46031.337Hz	  -2827	  0.059s	4.1014%
+0300	recording OK	audio length OK	     1765	    1.412s	     67781	    1.412s	1249.908Hz	48003.541Hz	      5	  0.000s	0.0074%
+0301	recording OK	audio length OK	     1720	    1.376s	     66054	    1.376s	1249.886Hz	48004.360Hz	      6	  0.000s	0.0091%
+0302	recording OK	audio length OK	     1755	    1.404s	     67398	    1.404s	1249.889Hz	48004.274Hz	      6	  0.000s	0.0089%
+0303	recording OK	Critical sample variation found for expected sampling rate (4.734%):	     1845	    1.476s	     67494	    1.406s	1312.117Hz	45727.642Hz	  -3354	  0.070s	4.7341%

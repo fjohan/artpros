@@ -1,0 +1,304 @@
+Sit still and lightly clench your teeth.
+%%Q3. Did a cat sit with a ##dog## on a hat?%%|A3. No, a cat sat with a rat on a hat.
+%%Q3. Did a cat sit with a ##dog## on a hat?%%|A3. No, a cat sat with a rat on a hat.
+%%Q2. Did a cat ##walk## with a rat on a hat?%%|A2. No, a cat sat with a rat on a hat.
+%%Q5. Did a ##dog## sit with a rat on a hat?%%|A5. No, a cat sat with a rat on a hat.
+%%Q1. Did a cat sit with a rat on a hat?%%|A1. Yes, a cat sat with a rat on a hat.
+%%Q4. Did a cat sit with a rat on a ##shoe##?%%|A4. No, a cat sat with a rat on a hat.
+%%Q3. Did a cat sit with a ##dog## on a hat?%%|A3. No, a cat sat with a rat on a hat.
+%%Q2. Did a cat ##walk## with a rat on a hat?%%|A2. No, a cat sat with a rat on a hat.
+%%Q5. Did a ##dog## sit with a rat on a hat?%%|A5. No, a cat sat with a rat on a hat.
+%%Q1. Did a cat sit with a rat on a hat?%%|A1. Yes, a cat sat with a rat on a hat.
+%%Q4. Did a cat sit with a rat on a ##shoe##?%%|A4. No, a cat sat with a rat on a hat.
+%%Q3. Did a cat sit with a ##dog## on a hat?%%|A3. No, a cat sat with a rat on a hat.
+%%Q2. Did a cat ##walk## with a rat on a hat?%%|A2. No, a cat sat with a rat on a hat.
+%%Q5. Did a ##dog## sit with a rat on a hat?%%|A5. No, a cat sat with a rat on a hat.
+%%Q1. Did a cat sit with a rat on a hat?%%|A1. Yes, a cat sat with a rat on a hat.
+%%Q4. Did a cat sit with a rat on a ##shoe##?%%|A4. No, a cat sat with a rat on a hat.
+%%Q3. Did a cat sit with a ##dog## on a hat?%%|A3. No, a cat sat with a rat on a hat.
+%%Q2. Did a cat ##walk## with a rat on a hat?%%|A2. No, a cat sat with a rat on a hat.
+%%Q5. Did a ##dog## sit with a rat on a hat?%%|A5. No, a cat sat with a rat on a hat.
+%%Q1. Did a cat sit with a rat on a hat?%%|A1. Yes, a cat sat with a rat on a hat.
+%%Q4. Did a cat sit with a rat on a ##shoe##?%%|A4. No, a cat sat with a rat on a hat.
+%%Q3. Did a cat sit with a ##dog## on a hat?%%|A3. No, a cat sat with a rat on a hat.
+%%Q2. Did a cat ##walk## with a rat on a hat?%%|A2. No, a cat sat with a rat on a hat.
+%%Q5. Did a ##dog## sit with a rat on a hat?%%|A5. No, a cat sat with a rat on a hat.
+%%Q1. Did a cat sit with a rat on a hat?%%|A1. Yes, a cat sat with a rat on a hat.
+%%Q4. Did a cat sit with a rat on a ##shoe##?%%|A4. No, a cat sat with a rat on a hat.
+%%Q1. Did the fat cat sit with Matt?%%|A1. Yes, the fat cat sat with Matt.
+%%Q2. Did the thin cat sit with Matt?%%|A2. No, the FAT cat sat with Matt.
+%%Q5. Did the fat cat sit with Pat?%%|A5. No, the fat cat sat with MATT.
+%%Q4. Did the fat cat lay with Matt?%%|A4. No, the fat cat SAT with Matt.
+%%Q6. Did the fat cat sit with John?%%|A6. No, the fat cat sat with MATT.
+%%Q3. Did the fat hen sit with Matt?%%|A3. No, the fat CAT sat with Matt.
+%%Q1. Did the fat cat sit with Matt?%%|A1. Yes, the fat cat sat with Matt.
+%%Q2. Did the thin cat sit with Matt?%%|A2. No, the FAT cat sat with Matt.
+%%Q5. Did the fat cat sit with Pat?%%|A5. No, the fat cat sat with MATT.
+%%Q4. Did the fat cat lay with Matt?%%|A4. No, the fat cat SAT with Matt.
+%%Q6. Did the fat cat sit with John?%%|A6. No, the fat cat sat with MATT.
+%%Q3. Did the fat hen sit with Matt?%%|A3. No, the fat CAT sat with Matt.
+%%Q1. Did the fat cat sit with Matt?%%|A1. Yes, the fat cat sat with Matt.
+%%Q1. Did the fat cat sit with Matt?%%|A1. Yes, the fat cat sat with Matt.
+%%Q2. Did the thin cat sit with Matt?%%|A2. No, the FAT cat sat with Matt.
+%%Q5. Did the fat cat sit with Pat?%%|A5. No, the fat cat sat with MATT.
+%%Q4. Did the fat cat lay with Matt?%%|A4. No, the fat cat SAT with Matt.
+%%Q6. Did the fat cat sit with John?%%|A6. No, the fat cat sat with MATT.
+%%Q3. Did the fat hen sit with Matt?%%|A3. No, the fat CAT sat with Matt.
+%%Q1. Did the fat cat sit with Matt?%%|A1. Yes, the fat cat sat with Matt.
+%%Q2. Did the thin cat sit with Matt?%%|A2. No, the FAT cat sat with Matt.
+%%Q5. Did the fat cat sit with Pat?%%|A5. No, the fat cat sat with MATT.
+%%Q4. Did the fat cat lay with Matt?%%|A4. No, the fat cat SAT with Matt.
+%%Q6. Did the fat cat sit with John?%%|A6. No, the fat cat sat with MATT.
+%%Q3. Did the fat hen sit with Matt?%%|A3. No, the fat CAT sat with Matt.
+%%Q1. Did the fat cat sit with Matt?%%|A1. Yes, the fat cat sat with Matt.
+%%Q2. Did the thin cat sit with Matt?%%|A2. No, the FAT cat sat with Matt.
+%%Q5. Did the fat cat sit with Pat?%%|A5. No, the fat cat sat with MATT.
+%%Q4. Did the fat cat lay with Matt?%%|A4. No, the fat cat SAT with Matt.
+%%Q6. Did the fat cat sit with John?%%|A6. No, the fat cat sat with MATT.
+%%Q3. Did the fat hen sit with Matt?%%|A3. No, the fat CAT sat with Matt.
+5. Hmmm... Bill's thick big lips|I never saw before.
+3. Hmmm... If Jean really feels mean|she'll start yelling.
+4. Hmmm... John's hot pots of chops|everybody likes.
+1. Hmmm... For John to go to Osborn|something bad must have happened.
+2. Hmmm... When Pen set the pet at the bed|I started laughing. 
+5. Hmmm... Bill's thick big lips|I never saw before.
+3. Hmmm... If Jean really feels mean|she'll start yelling.
+4. Hmmm... John's hot pots of chops|everybody likes.
+1. Hmmm... For John to go to Osborn|something bad must have happened.
+2. Hmmm... When Pen set the pet at the bed|I started laughing. 
+5. Hmmm... Bill's thick big lips|I never saw before.
+3. Hmmm... If Jean really feels mean|she'll start yelling.
+4. Hmmm... John's hot pots of chops|everybody likes.
+1. Hmmm... For John to go to Osborn|something bad must have happened.
+2. Hmmm... When Pen set the pet at the bed|I started laughing. 
+5. Hmmm... Bill's thick big lips|I never saw before.
+5. Hmmm... Bill's thick big lips|I never saw before.
+3. Hmmm... If Jean really feels mean|she'll start yelling.
+4. Hmmm... John's hot pots of chops|everybody likes.
+1. Hmmm... For John to go to Osborn|something bad must have happened.
+2. Hmmm... When Pen set the pet at the bed|I started laughing. 
+5. Hmmm... Bill's thick big lips|I never saw before.
+3. Hmmm... If Jean really feels mean|she'll start yelling.
+4. Hmmm... John's hot pots of chops|everybody likes.
+1. Hmmm... For John to go to Osborn|something bad must have happened.
+2. Hmmm... When Pen set the pet at the bed|I started laughing. 
+5. Bill's thick big lips|I never saw before.
+1. For John to go to Osborn|something bad must have happened.
+4. John's hot pots of chops|everybody likes.
+2. When Pen set the pet at the bed|I started laughing. 
+3. If Jean really feels mean|she'll start yelling.
+5. Bill's thick big lips|I never saw before.
+1. For John to go to Osborn|something bad must have happened.
+4. John's hot pots of chops|everybody likes.
+2. When Pen set the pet at the bed|I started laughing. 
+3. If Jean really feels mean|she'll start yelling.
+5. Bill's thick big lips|I never saw before.
+1. For John to go to Osborn|something bad must have happened.
+4. John's hot pots of chops|everybody likes.
+2. When Pen set the pet at the bed|I started laughing. 
+3. If Jean really feels mean|she'll start yelling.
+5. Bill's thick big lips|I never saw before.
+1. For John to go to Osborn|something bad must have happened.
+4. John's hot pots of chops|everybody likes.
+2. When Pen set the pet at the bed|I started laughing. 
+3. If Jean really feels mean|she'll start yelling.
+5. Bill's thick big lips|I never saw before.
+1. For John to go to Osborn|something bad must have happened.
+4. John's hot pots of chops|everybody likes.
+2. When Pen set the pet at the bed|I started laughing. 
+3. If Jean really feels mean|she'll start yelling.
+4. John's %%fries%%.|Hmmm... John's hot pots of ##chops##|everybody likes.
+1. John went to %%Washington%%.|Hmm... For John to go to ##Osborn##|something bad must have happened.
+3. Jean feeling %%kind%%.|Hmmm... If Jean really feels ##mean##|she'll start yelling.
+5. Bill's %%nose%%.|Hmm... Bill's thick big ##lips##|I never saw before.
+2. Pen set the pet at the %%couch%%.|Hmm... When Pen set the pet at the ##bed##|I started laughing. 
+4. John's %%fries%%.|Hmmm... John's hot pots of ##chops##|everybody likes.
+1. John went to %%Washington%%.|Hmm... For John to go to ##Osborn##|something bad must have happened.
+3. Jean feeling %%kind%%.|Hmmm... If Jean really feels ##mean##|she'll start yelling.
+5. Bill's %%nose%%.|Hmm... Bill's thick big ##lips##|I never saw before.
+2. Pen set the pet at the %%couch%%.|Hmm... When Pen set the pet at the ##bed##|I started laughing. 
+4. John's %%fries%%.|Hmmm... John's hot pots of ##chops##|everybody likes.
+1. John went to %%Washington%%.|Hmm... For John to go to ##Osborn##|something bad must have happened.
+3. Jean feeling %%kind%%.|Hmmm... If Jean really feels ##mean##|she'll start yelling.
+5. Bill's %%nose%%.|Hmm... Bill's thick big ##lips##|I never saw before.
+2. Pen set the pet at the %%couch%%.|Hmm... When Pen set the pet at the ##bed##|I started laughing. 
+4. John's %%fries%%.|Hmmm... John's hot pots of ##chops##|everybody likes.
+1. John went to %%Washington%%.|Hmm... For John to go to ##Osborn##|something bad must have happened.
+3. Jean feeling %%kind%%.|Hmmm... If Jean really feels ##mean##|she'll start yelling.
+5. Bill's %%nose%%.|Hmm... Bill's thick big ##lips##|I never saw before.
+2. Pen set the pet at the %%couch%%.|Hmm... When Pen set the pet at the ##bed##|I started laughing. 
+4. John's %%fries%%.|Hmmm... John's hot pots of ##chops##|everybody likes.
+1. John went to %%Washington%%.|Hmm... For John to go to ##Osborn##|something bad must have happened.
+3. Jean feeling %%kind%%.|Hmmm... If Jean really feels ##mean##|she'll start yelling.
+5. Bill's %%nose%%.|Hmm... Bill's thick big ##lips##|I never saw before.
+2. Pen set the pet at the %%couch%%.|Hmm... When Pen set the pet at the ##bed##|I started laughing. 
+4. John's %%fries%%.|John's hot pots of ##chops##|everybody likes.
+4. John's %%fries%%.|John's hot pots of ##chops##|everybody likes.
+4. John's %%fries%%.|John's hot pots of ##chops##|everybody likes.
+3. Jean feeling %%kind%%.|If Jean really feels ##mean##|she'll start yelling.
+1. John went to %%Washington%%.|For John to go to ##Osborn##|something bad must have happened.
+2. Pen set the pet at the %%couch%%.|When Pen set the pet at the ##bed##|I started laughing. 
+5. Bill's %%nose%%.|Bill's thick big ##lips##|I never saw before.
+4. John's %%fries%%.|John's hot pots of ##chops##|everybody likes.
+3. Jean feeling %%kind%%.|If Jean really feels ##mean##|she'll start yelling.
+1. John went to %%Washington%%.|For John to go to ##Osborn##|something bad must have happened.
+2. Pen set the pet at the %%couch%%.|When Pen set the pet at the ##bed##|I started laughing. 
+5. Bill's %%nose%%.|Bill's thick big ##lips##|I never saw before.
+4. John's %%fries%%.|John's hot pots of ##chops##|everybody likes.
+3. Jean feeling %%kind%%.|If Jean really feels ##mean##|she'll start yelling.
+1. John went to %%Washington%%.|For John to go to ##Osborn##|something bad must have happened.
+2. Pen set the pet at the %%couch%%.|When Pen set the pet at the ##bed##|I started laughing. 
+5. Bill's %%nose%%.|Bill's thick big ##lips##|I never saw before.
+4. John's %%fries%%.|John's hot pots of ##chops##|everybody likes.
+3. Jean feeling %%kind%%.|If Jean really feels ##mean##|she'll start yelling.
+1. John went to %%Washington%%.|For John to go to ##Osborn##|something bad must have happened.
+2. Pen set the pet at the %%couch%%.|When Pen set the pet at the ##bed##|I started laughing. 
+5. Bill's %%nose%%.|Bill's thick big ##lips##|I never saw before.
+4. John's %%fries%%.|John's hot pots of ##chops##|everybody likes.
+3. Jean feeling %%kind%%.|If Jean really feels ##mean##|she'll start yelling.
+1. John went to %%Washington%%.|For John to go to ##Osborn##|something bad must have happened.
+1. John went to %%Washington%%.|For John to go to ##Osborn##|something bad must have happened.
+2. Pen set the pet at the %%couch%%.|When Pen set the pet at the ##bed##|I started laughing. 
+5. Bill's %%nose%%.|Bill's thick big ##lips##|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
+%%Bob's chops?%%...|##John's## hot pots of chops|everybody likes.
+%%Pete%% was really feeling mean.|If ##Jean## really feels mean|she'll start yelling.
+John used %%pans%% for his chops?|John's hot ##pots## of chops|everybody likes.
+%%Bob%% set the pet at the bed.|When ##Pen## set the pet at the bed|I started laughing. 
+Pen %%covered%% the pet.|When Pen ##set## the pet at the bed|I started laughing. 
+Bill's %%thin%% lips?...|Bill's ##thick## big lips|I never saw before.
+Jean just %%acts like%% she's mean.|If Jean really ##feels## mean|she'll start yelling.
+Pen set the %%pillow%% at the bed.|When Pen set the ##pet## at the bed|I started laughing. 
+%%Mike's lips?%%|##Bill's## thick big lips|I never saw before.
+Bill's %%small%% lips?...|Bill's thick ##big## lips|I never saw before.
+%%Bill%% went to Osborn.|For ##John## to go to Osborn|something bad must have happened.
+John %%stayed%% in town.|For John to ##go## to Osborn|something bad must have happened.
+Jean %%sort of%% feels mean.|If Jean ##really## feels mean|she'll start yelling.
+John's specialty was %%cold%% ones?|John's ##hot## pots of chops|everybody likes.
