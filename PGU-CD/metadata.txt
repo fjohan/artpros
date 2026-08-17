@@ -5,6 +5,5 @@ wordLabels$# = { "fat", "cat", "sat", "matt" }
 blacklist# = { 31, 33, 35, 36, 38, 40, 41, 42, 43, 44, 45, 46, 47 }
 LL = 38
 TT = 59
-TB = 66
 TD = 66
 JW = 108
