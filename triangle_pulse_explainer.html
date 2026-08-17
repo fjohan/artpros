@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syllable Triangle Pulse Train Explainer</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: #fffaf0;
+      --ink: #202018;
+      --muted: #6d665b;
+      --line: #d8cbb8;
+      --accent: #b6422c;
+      --accent-dark: #7b291c;
+      --touch: #244c8f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(182, 66, 44, 0.16), transparent 28rem),
+        linear-gradient(135deg, #f7f1e6 0%, #efe5d2 100%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 24px auto 36px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(34px, 6vw, 62px);
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 780px;
+      line-height: 1.35;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: color-mix(in srgb, var(--panel) 92%, white);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 18px 38px rgba(70, 46, 20, 0.12);
+      padding: 16px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    button, input {
+      border: 1px solid var(--accent-dark);
+      border-radius: 999px;
+      padding: 9px 15px;
+      font: 700 14px/1.1 Georgia, "Times New Roman", serif;
+    }
+
+    button {
+      color: var(--panel);
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 2px 0 var(--accent-dark);
+    }
+
+    input[type="range"] {
+      width: min(420px, 60vw);
+      padding: 0;
+      accent-color: var(--accent);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 520px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.14)),
+        repeating-linear-gradient(90deg, transparent 0 89px, rgba(32, 32, 24, 0.045) 90px);
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255, 250, 240, 0.74);
+    }
+
+    .label {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 5px;
+    }
+
+    .value {
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .explain {
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 920px;
+    }
+
+    code {
+      color: var(--ink);
+      background: rgba(216, 203, 184, 0.45);
+      border-radius: 5px;
+      padding: 1px 4px;
+    }
+
+    @media (max-width: 760px) {
+      .readout {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Triangle Pulse Train</h1>
+    <div class="subtitle">
+      The animation starts with vertical syllable magnitude bars. The triangles grow symmetrically from each syllable center until the first adjacent pair touches. That stopping angle is the shadow angle.
+    </div>
+
+    <section class="card">
+      <div class="controls">
+        <button id="playBtn" type="button">Play</button>
+        <button id="resetBtn" type="button">Reset</button>
+        <label>Growth <input id="progress" type="range" min="0" max="1" step="0.001" value="0"></label>
+      </div>
+
+      <canvas id="canvas" width="1100" height="520"></canvas>
+
+      <div class="readout">
+        <div class="metric">
+          <span class="label">Current Angle</span>
+          <div class="value" id="angleValue">0.000 rad</div>
+        </div>
+        <div class="metric">
+          <span class="label">Final Shadow Angle</span>
+          <div class="value" id="finalAngleValue">-</div>
+        </div>
+        <div class="metric">
+          <span class="label">Touching Pair</span>
+          <div class="value" id="pairValue">-</div>
+        </div>
+        <div class="metric">
+          <span class="label">Rule</span>
+          <div class="value">min adjacent angle</div>
+        </div>
+      </div>
+
+      <div class="explain">
+        For each adjacent pair, compute the angle where those two triangles would just touch:
+        <code>theta_i = atan((center[i+1] - center[i]) / (mag[i] + mag[i+1]))</code>.
+        The pulse train uses <code>theta = min(theta_i)</code>, so the most crowded pair touches and the other pairs remain separated.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const syllables = [
+      { label: "Pam", center: 0.25, mag: 21 },
+      { label: "said", center: 0.34, mag: 18 },
+      { label: "bat", center: 0.40, mag: 25 },
+      { label: "that", center: 0.45, mag: 21 },
+      { label: "fat", center: 0.52, mag: 19 },
+      { label: "cat", center: 0.58, mag: 23 },
+      { label: "at", center: 0.61, mag: 16 },
+      { label: "that", center: 0.65, mag: 21 },
+      { label: "mat", center: 0.71, mag: 24 }
+    ];
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const playBtn = document.getElementById("playBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const progress = document.getElementById("progress");
+    const angleValue = document.getElementById("angleValue");
+    const finalAngleValue = document.getElementById("finalAngleValue");
+    const pairValue = document.getElementById("pairValue");
+
+    const final = computeShadowAngle(syllables);
+    let animation = null;
+    let startTime = null;
+
+    finalAngleValue.textContent = `${final.theta.toFixed(4)} rad`;
+    pairValue.textContent = `${syllables[final.index].label} + ${syllables[final.index + 1].label}`;
+    draw(0);
+
+    playBtn.addEventListener("click", () => {
+      if (animation) {
+        cancelAnimationFrame(animation);
+        animation = null;
+        playBtn.textContent = "Play";
+        return;
+      }
+      startTime = performance.now() - Number(progress.value) * 3200;
+      playBtn.textContent = "Pause";
+      animation = requestAnimationFrame(tick);
+    });
+
+    resetBtn.addEventListener("click", () => {
+      if (animation) cancelAnimationFrame(animation);
+      animation = null;
+      playBtn.textContent = "Play";
+      progress.value = "0";
+      draw(0);
+    });
+
+    progress.addEventListener("input", () => draw(Number(progress.value)));
+    window.addEventListener("resize", () => draw(Number(progress.value)));
+
+    function tick(now) {
+      const p = Math.min(1, (now - startTime) / 3200);
+      progress.value = String(p);
+      draw(p);
+      if (p < 1) {
+        animation = requestAnimationFrame(tick);
+      } else {
+        animation = null;
+        playBtn.textContent = "Play";
+      }
+    }
+
+    function draw(p) {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(520 * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const w = canvas.width / dpr;
+      const h = canvas.height / dpr;
+      const pad = { left: 58, right: 28, top: 38, bottom: 68 };
+      const baseY = h - pad.bottom;
+      const plotW = w - pad.left - pad.right;
+      const plotH = h - pad.top - pad.bottom;
+      const minT = 0.23;
+      const maxT = 0.75;
+      const maxMag = 30;
+      const theta = final.theta * easeOutCubic(p);
+      const tanTheta = Math.tan(theta);
+
+      angleValue.textContent = `${theta.toFixed(4)} rad`;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#fffaf0";
+      ctx.fillRect(0, 0, w, h);
+
+      drawAxes(pad, baseY, plotW, plotH, minT, maxT, maxMag);
+
+      for (let i = 0; i < syllables.length; i++) {
+        const syl = syllables[i];
+        const x = timeToX(syl.center, pad.left, plotW, minT, maxT);
+        const y = magToY(syl.mag, baseY, plotH, maxMag);
+        const halfWidth = syl.mag * tanTheta;
+        const xLeft = timeToX(syl.center - halfWidth / 1000, pad.left, plotW, minT, maxT);
+        const xRight = timeToX(syl.center + halfWidth / 1000, pad.left, plotW, minT, maxT);
+        const isTouching = i === final.index || i === final.index + 1;
+
+        ctx.strokeStyle = isTouching && p > 0.96 ? "#244c8f" : "#202018";
+        ctx.fillStyle = isTouching && p > 0.96 ? "rgba(36, 76, 143, 0.14)" : "rgba(32, 32, 24, 0.10)";
+        ctx.lineWidth = isTouching && p > 0.96 ? 2.4 : 1.3;
+        ctx.beginPath();
+        ctx.moveTo(xLeft, baseY);
+        ctx.lineTo(x, y);
+        ctx.lineTo(xRight, baseY);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.strokeStyle = "#b6422c";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x, baseY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+        ctx.fillStyle = "#202018";
+        ctx.font = "16px Georgia";
+        ctx.textAlign = "center";
+        ctx.fillText(syl.label, x, y - 12);
+      }
+
+      if (p > 0.96) drawTouchMarker(pad, baseY, plotW, minT, maxT, final);
+    }
+
+    function drawAxes(pad, baseY, plotW, plotH, minT, maxT, maxMag) {
+      ctx.strokeStyle = "#d8cbb8";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(pad.left, baseY);
+      ctx.lineTo(pad.left + plotW, baseY);
+      ctx.moveTo(pad.left, baseY);
+      ctx.lineTo(pad.left, baseY - plotH);
+      ctx.stroke();
+
+      ctx.fillStyle = "#6d665b";
+      ctx.font = "12px Georgia";
+      ctx.textAlign = "right";
+      for (let mag = 0; mag <= maxMag; mag += 10) {
+        const y = magToY(mag, baseY, plotH, maxMag);
+        ctx.fillText(String(mag), pad.left - 10, y + 4);
+        ctx.strokeStyle = "rgba(32, 32, 24, 0.10)";
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(pad.left + plotW, y);
+        ctx.stroke();
+      }
+
+      ctx.textAlign = "center";
+      for (let t = 0.25; t <= 0.75; t += 0.05) {
+        const x = timeToX(t, pad.left, plotW, minT, maxT);
+        ctx.fillText(String(Math.round(t * 1000)), x, baseY + 22);
+      }
+
+      ctx.fillText("time (ms)", pad.left + plotW / 2, baseY + 48);
+      ctx.save();
+      ctx.translate(20, baseY - plotH / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText("syllable magnitude", 0, 0);
+      ctx.restore();
+    }
+
+    function drawTouchMarker(pad, baseY, plotW, minT, maxT, final) {
+      const a = syllables[final.index];
+      const b = syllables[final.index + 1];
+      const touchTime = (a.center * b.mag + b.center * a.mag) / (a.mag + b.mag);
+      const x = timeToX(touchTime, pad.left, plotW, minT, maxT);
+
+      ctx.strokeStyle = "#244c8f";
+      ctx.fillStyle = "#244c8f";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(x, baseY, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.font = "14px Georgia";
+      ctx.textAlign = "center";
+      ctx.fillText("first touch", x, baseY - 18);
+    }
+
+    function computeShadowAngle(items) {
+      let best = { theta: Infinity, index: 0 };
+      for (let i = 0; i < items.length - 1; i++) {
+        const dtMs = (items[i + 1].center - items[i].center) * 1000;
+        const theta = Math.atan(dtMs / (items[i].mag + items[i + 1].mag));
+        if (theta < best.theta) best = { theta, index: i };
+      }
+      return best;
+    }
+
+    function timeToX(time, left, width, minT, maxT) {
+      return left + ((time - minT) / (maxT - minT)) * width;
+    }
+
+    function magToY(mag, baseY, height, maxMag) {
+      return baseY - (mag / maxMag) * height;
+    }
+
+    function easeOutCubic(x) {
+      return 1 - (1 - x) ** 3;
+    }
+  </script>
+</body>
+</html>
